@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 
-import coin from '../../assets/collective/coin.png'
+import coin from '../../assets/collective/coin.png';
 
 export default class Coin extends Component {
 	constructor(props) {

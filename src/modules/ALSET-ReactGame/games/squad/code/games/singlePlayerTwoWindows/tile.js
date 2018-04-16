@@ -11,15 +11,15 @@ export default class Tile extends Component {
             this.props.tiles.map((tile, index)=>{
                 switch(tile.type){
                     case 'grass':
-                        return <Grass key={index} tileData={tile}/>
+                        return <Grass key={index} tileData={tile}/>;
                     case 'concrete':
-                        return <Concrete key={index} tileData={tile}/>
+                        return <Concrete key={index} tileData={tile}/>;
                     case 'sand':
-                        return <Sand key={index} tileData={tile}/>
+                        return <Sand key={index} tileData={tile}/>;
                     default:
-                        return <Grass key={index} tileData={tile}/>
+                        return <Grass key={index} tileData={tile}/>;
                 }
             })
-        }</div>
+        }</div>;
     }
 }

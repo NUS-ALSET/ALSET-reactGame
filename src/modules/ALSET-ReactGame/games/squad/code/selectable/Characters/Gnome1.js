@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import Sprite from './Sprite';
 import { observer } from 'mobx-react';
 
-import gnome1 from '../../assets/characters/gnome1.png'
+import gnome1 from '../../assets/characters/gnome1.png';
 
 class Gnome1 extends Component {
     getAnimationState(){
@@ -36,7 +36,7 @@ class Gnome1 extends Component {
     }
     render() {
 		return (
-			<div id={"character"} style={this.getWrapperStyles()}>
+			<div id={'character'} style={this.getWrapperStyles()}>
                 <Sprite
                     repeat={true}
                     tileWidth={64}
@@ -48,7 +48,7 @@ class Gnome1 extends Component {
                     steps={[7, 7, 7, 7, 0, 0]}
                 />
 			</div>
-		)
+		);
 	}
 }
-export default observer(Gnome1)
+export default observer(Gnome1);

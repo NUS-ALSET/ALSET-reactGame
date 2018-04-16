@@ -3,15 +3,15 @@ import { observer } from 'mobx-react';
 import Util from '../utils/index';
 import Squad from './squad/index';
 import GemCollector from './gemCollector/index';
-import SquadGame from './squadGame/index'
+import SquadGame from './squadGame/index';
 import SinglePlayerTwoWindows from './singlePlayerTwoWindows';
 
 import SinglePlayerTwoWindowsConfig from '../defaultConfigs/singlePlayerTwoWindowsConfig.json';
 import SquadGameConfig from '../defaultConfigs/squadGameConfig.json';
 import GemCollectorConfig from '../defaultConfigs/gemCollectorConfig.json';
 import SquadDefaultConfig from '../defaultConfigs/squadConfig.json';
-import CodeEditor from '../games/squadGame/code-editor'
-import config from '../../../../../../config.json'
+import CodeEditor from '../games/squadGame/code-editor';
+import config from '../../../../../../config.json';
 
 class ALSETReactGame extends Component{
     constructor(props){
@@ -19,7 +19,7 @@ class ALSETReactGame extends Component{
         this.getGameData = this.getGameData.bind(this);
     }
     render() {
-        const {selectedGameMode} = this.props
+        const {selectedGameMode} = this.props;
         var gameData = this.getGameData(selectedGameMode.name);
         var getCommands = Util.getCommands;
         switch(selectedGameMode.id){
@@ -36,25 +36,25 @@ class ALSETReactGame extends Component{
                 showCodeEditor= {false} 
                 getCommands={getCommands}
                 onGameEvent={this.props.onGameEvent}
-                />
+                />;
                 case 1:
                 return <GemCollector
                 gameData={gameData}
                 getCommands={getCommands}
                 onGameEvent={this.props.onGameEvent}
-                />
+                />;
                 case 2:
                 return <SinglePlayerTwoWindows
                 gameData={gameData}
                 getCommands={getCommands}
                 onGameEvent={this.props.onGameEvent}
-                />
+                />;
                 case 3:
                 return <SquadGame
                 gameData={gameData}
                 getCommands={getCommands}
                 onGameEvent={this.props.onGameEvent}
-                />
+                />;
             default:
                 return (
                 <div>
@@ -72,17 +72,17 @@ class ALSETReactGame extends Component{
                 />
                 <CodeEditor/>
                 </div>
-                )
+                );
         }
     }
     getGameData(gameType){
         var data = {};
-        if(gameType=="Gem Collector"){
+        if(gameType=='Gem Collector'){
         var defaultConfig = GemCollectorConfig;
         }
-        else if(gameType=="Single Player Two Windows")
+        else if(gameType=='Single Player Two Windows')
         var defaultConfig = SinglePlayerTwoWindowsConfig;
-        else if(gameType=="Squad Game")
+        else if(gameType=='Squad Game')
         var defaultConfig = SquadGameConfig;
         else
         var defaultConfig = SquadDefaultConfig;
@@ -96,4 +96,4 @@ class ALSETReactGame extends Component{
         return data;
     }
 }
-export default observer(ALSETReactGame)
+export default observer(ALSETReactGame);

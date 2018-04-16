@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types';
 import Store from '../../store/squad';
 import { withStyles } from 'material-ui/styles';
 import Button from 'material-ui/Button';
@@ -34,7 +34,7 @@ if(closestGem){
         var direction = {left:false, right:false, up:true, down:false};
     }
     return direction;
-}`
+}`;
 
 const styles = theme => ({
     root: {
@@ -56,7 +56,7 @@ class CodeEditor extends Component {
             updatedCode: CustomFunctionCode,
             errors: [],
           
-        }
+        };
         this.updateCustomCode = this.updateCustomCode.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.handleValidation = this.handleValidation.bind(this);
@@ -112,7 +112,7 @@ class CodeEditor extends Component {
        <Button variant="raised" color="primary" onClick={this.updateCustomCode} className={classes.button}>
          Update code
        </Button>
-     </div>
+     </div>;
     }
 }
-export default withStyles(styles)(CodeEditor)
+export default withStyles(styles)(CodeEditor);

@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import { TileMap } from 'react-game-kit';
 
-import bush from '../../assets/obstacles/bush.png'
+import bush from '../../assets/obstacles/bush.png';
 
 export default class Bush extends Component {
 	constructor(props) {

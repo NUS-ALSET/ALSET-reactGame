@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types';
 import Store from '../../store/squad';
 import Coin from '../../selectable/Collectives/Coin';
 import Gem from '../../selectable/Collectives/Gem';
@@ -28,16 +28,16 @@ class Collectives extends Component {
             case 'coin':
                 return  <div>{Store.collectives[this.props.gameId].map((collective, index) => {
                     return <Coin key={index} collectiveData={collective} index={index}/>;
-                })}</div>
+                })}</div>;
             case 'gem':
                 return  <div>{Store.collectives[this.props.gameId].map((collective, index) => {
                     return <Gem key={index} collectiveData={collective} index={index}/>;
-                })}</div>
+                })}</div>;
             default:
                 return  <div>{Store.collectives[this.props.gameId].map((collective, index) => {
                     return <Coin key={index} collectiveData={collective} index={index}/>;
-                })}</div>
+                })}</div>;
         }
     }
 }
-export default Collectives
+export default Collectives;

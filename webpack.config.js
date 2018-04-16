@@ -24,6 +24,11 @@ module.exports = {
         exclude: /node_modules/,
         use: 'babel-loader',
       },
+      {
+        test: /\.jsx?$/,
+        exclude: /node_modules/,
+        use: '[eslint-loader,babel-loader]',
+      },
     ],
   },
   plugins: [HtmlWebpackPluginConfig],

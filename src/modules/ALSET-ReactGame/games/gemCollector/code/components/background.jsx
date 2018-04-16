@@ -8,7 +8,7 @@ export default class Background extends Component {
 
   render() {
     return (
-      <div className='background-Wrapper'>
+      <div className="background-Wrapper">
         <TileMap
           style={{ top: 0 }}
           tileSize={145}

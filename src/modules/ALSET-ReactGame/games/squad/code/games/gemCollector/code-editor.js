@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types';
 import Store from '../../store/gemCollector';
 
 export default class CodeEditor extends Component {
@@ -9,14 +9,14 @@ export default class CodeEditor extends Component {
 	}
 	
     updateCustomCode(){
-        Store.func = document.getElementById("codeEditor").value;
+        Store.func = document.getElementById('codeEditor').value;
         //console.log(Store.func);
         //Store.funcNeedUpdate = true;
     }
 
 	render() {
        return <div>
-           <textarea id="codeEditor" style={{width:"100%", height:"410px"}} defaultValue={`var player = world.player;
+           <textarea id="codeEditor" style={{width:'100%', height:'410px'}} defaultValue={`var player = world.player;
 var closestGem = false;
 world.collectives.forEach(stone => {
     if(closestGem==false)
@@ -43,7 +43,7 @@ if(closestGem){
     }
     return direction;
 }`}></textarea>
-            <button onClick={()=>{this.updateCustomCode()}}>Update code</button>
-       </div>
+            <button onClick={()=>{this.updateCustomCode();}}>Update code</button>
+       </div>;
     }
 }

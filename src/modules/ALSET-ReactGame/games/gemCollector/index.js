@@ -314,6 +314,6 @@ PlayGemCollectorGame.defaultProps = {
   mode: config.mode,
   onGameEvent: () => {},
   showCodeEditor: config.showCodeEditor,
-}
+};
 
 export default withStyles(styles)(PlayGemCollectorGame);

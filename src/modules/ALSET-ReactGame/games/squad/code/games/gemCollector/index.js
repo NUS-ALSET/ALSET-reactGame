@@ -11,14 +11,14 @@ import Store from '../../store/gemCollector';
 
 export default class GemCollector extends Component {
     componentDidMount(){
-        if(document.getElementById("codeEditor"))
-            Store.func = document.getElementById("codeEditor").value;
+        if(document.getElementById('codeEditor'))
+            Store.func = document.getElementById('codeEditor').value;
     }
     getWrapperStyles() {
         return {
             height: '95vh',
             width: '100%',
-            transform: `translate(0px, 0px) translateZ(0)`,
+            transform: 'translate(0px, 0px) translateZ(0)',
             transformOrigin: 'top left'
         };
     }
@@ -27,7 +27,7 @@ export default class GemCollector extends Component {
             height: '100%',
             width: '100%',
             float: 'left',
-            transform: `translate(0px, 0px) translateZ(0)`,
+            transform: 'translate(0px, 0px) translateZ(0)',
             transformOrigin: 'top left'
         };
     }
@@ -36,13 +36,13 @@ export default class GemCollector extends Component {
             height: '80%',
             width: '100%',
             float: 'left',
-            transform: `translate(0px, 10%) translateZ(0)`,
+            transform: 'translate(0px, 10%) translateZ(0)',
             transformOrigin: 'top left',
             background: '#3a9bdc'
         };
     }
     render(){
-        console.log(this.props.gameData,"props.....")
+        console.log(this.props.gameData,'props.....');
         return <div style={this.getWrapperStyles()}>
             <Loop>
                 <Controls
@@ -50,7 +50,7 @@ export default class GemCollector extends Component {
                     onPause={this.props.onPause}
                     onEnd={this.props.onEnd}
                 />
-                <div id={"game0"} style={this.getGameWrapperStyles()}><Stage style={this.getGameStyles()}>
+                <div id={'game0'} style={this.getGameWrapperStyles()}><Stage style={this.getGameStyles()}>
                     <Tile tiles={this.props.gameData.config.game.tiles}/>
                     <div>{this.props.gameData.config.game.obstacles.map((obstacle, index) => {
                         return <Obstacle key={index} obstacle={obstacle} index={index}/>;
@@ -62,20 +62,20 @@ export default class GemCollector extends Component {
                         max={this.props.gameData.config.game.collectives.max} 
                         gameId={0}              
                     />
-                    {(this.props.gameData.mode=="player-vs-bot"
-                    ||this.props.gameData.mode=="player-vs-player")&&
+                    {(this.props.gameData.mode=='player-vs-bot'
+                    ||this.props.gameData.mode=='player-vs-player')&&
                     <Character 
                         charId={0}
                         type={this.props.gameData.config.game.character1.type}
                         keys={this.props.gameData.player1Keys}
                     />}
-                    {this.props.gameData.mode=="player-vs-player"&&
+                    {this.props.gameData.mode=='player-vs-player'&&
                     <Character
                         charId={1}
                         type={this.props.gameData.config.game.character2.type}
                         keys={this.props.gameData.player2Keys}
                     />}
-                    {this.props.gameData.mode=="player-vs-bot"&&
+                    {this.props.gameData.mode=='player-vs-bot'&&
                     <Bot
                         charId={1}
                         type={this.props.gameData.config.game.character2.type}
@@ -84,7 +84,7 @@ export default class GemCollector extends Component {
                         player1Function={this.props.player1Function}
                         onError={this.props.onError}
                     />}
-                    {(this.props.gameData.mode=="bot-vs-bot")&&
+                    {(this.props.gameData.mode=='bot-vs-bot')&&
                     <Bot
                         charId={0}
                         type={this.props.gameData.config.game.character1.type}
@@ -93,7 +93,7 @@ export default class GemCollector extends Component {
                         player1Function={this.props.player1Function}
                         onError={this.props.onError}
                     />}
-                    {(this.props.gameData.mode=="bot-vs-bot")&&
+                    {(this.props.gameData.mode=='bot-vs-bot')&&
                     <Bot
                         charId={1}
                         type={this.props.gameData.config.game.character2.type}
@@ -103,9 +103,9 @@ export default class GemCollector extends Component {
                         onError={this.props.onError}
                     />}
                 </Stage></div>
-                {this.props.gameData.showCodeEditor?<CodeEditor/>:""}
+                {this.props.gameData.showCodeEditor?<CodeEditor/>:''}
             </Loop>
 
-        </div>
+        </div>;
     }
 }

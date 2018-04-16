@@ -11,41 +11,35 @@ class PlayEditableSquadGame extends Component {
   constructor() {
     super();
     this.state = {
-      scores : [0,0]
+      scores: [0, 0],
     };
-    this.handleGameEvents= this.handleGameEvents.bind(this);
+    this.handleGameEvents = this.handleGameEvents.bind(this);
   }
 
   handleGameEvents(event) {
-    if(event.type==='score_update'){
-      if (
-        event.scores[0] != this.state.scores[0] ||
-        event.scores[1] != this.state.scores[1]
-      ) {
+    if (event.type === 'score_update') {
+      if (event.scores[0] != this.state.scores[0] || event.scores[1] != this.state.scores[1]) {
         this.setState({ scores: event.scores });
-      }   
+      }
     }
-  
-    this.props.onGameEvent(event);
 
+    this.props.onGameEvent(event);
   }
 
   render() {
     const { classes, selectedGameMode } = this.props;
-    return (
-      <div>
-        {this.initSquad(selectedGameMode.id)}
-      </div>
-    );
+    return <div>{this.initSquad(selectedGameMode.id)}</div>;
   }
 
   initSquad = gameMode => {
-    return <EditableSquadGame 
-    gameConfig={this.props.selectedGameConfig}  
-    onGameEvent={this.handleGameEvents} 
-    selectedGameMode={this.props.selectedGameMode}
-    />;
-  };  
+    return (
+      <EditableSquadGame
+        gameConfig={this.props.selectedGameConfig}
+        onGameEvent={this.handleGameEvents}
+        selectedGameMode={this.props.selectedGameMode}
+      />
+    );
+  };
 }
 
 export default withStyles(styles)(PlayEditableSquadGame);

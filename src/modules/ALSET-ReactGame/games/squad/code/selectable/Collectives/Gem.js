@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 
-import gem from '../../assets/collective/gem.png'
+import gem from '../../assets/collective/gem.png';
 
 export default class Gem extends Component {
 	constructor(props) {

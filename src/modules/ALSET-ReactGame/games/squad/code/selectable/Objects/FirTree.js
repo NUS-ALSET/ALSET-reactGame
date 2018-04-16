@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import { TileMap } from 'react-game-kit';
 
-import fir_tree from '../../assets/obstacles/fir-tree.png'
+import fir_tree from '../../assets/obstacles/fir-tree.png';
 
 export default class Bush extends Component {
 	constructor(props) {

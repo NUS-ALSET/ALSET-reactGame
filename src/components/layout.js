@@ -86,8 +86,7 @@ class Layout extends React.Component {
               aria-label="open drawer"
               onClick={this.handleDrawerToggle}
               className={classes.navIconHide}
-            >
-            </IconButton>
+            />
             <Typography variant="title" color="inherit" noWrap>
               ALSET Game
             </Typography>
@@ -105,8 +104,7 @@ class Layout extends React.Component {
             ModalProps={{
               keepMounted: true, // Better open performance on mobile.
             }}
-          >
-          </Drawer>
+          />
         </Hidden>
         <Hidden smDown implementation="css">
           {/* <Drawer

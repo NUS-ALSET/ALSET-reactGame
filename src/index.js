@@ -27,6 +27,6 @@ const App = (props) => {
       break;
   }
   return component;
-}
+};
 
 export default App;
