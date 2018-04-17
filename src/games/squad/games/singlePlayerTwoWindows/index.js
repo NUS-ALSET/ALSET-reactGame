@@ -18,7 +18,7 @@ export default class SinglePlayerTwoWindows extends Component {
     return {
       height: '95vh',
       width: '100%',
-      transform: `translate(0px, 0px) translateZ(0)`,
+      transform: 'translate(0px, 0px) translateZ(0)',
       transformOrigin: 'top left',
     };
   }
@@ -27,7 +27,7 @@ export default class SinglePlayerTwoWindows extends Component {
       height: '100%',
       width: '50%',
       float: 'left',
-      transform: `translate(0px, 0px) translateZ(0)`,
+      transform: 'translate(0px, 0px) translateZ(0)',
       transformOrigin: 'top left',
     };
   }
@@ -36,7 +36,7 @@ export default class SinglePlayerTwoWindows extends Component {
       height: '80%',
       width: '100%',
       float: 'left',
-      transform: `translate(0px, 10%) translateZ(0)`,
+      transform: 'translate(0px, 10%) translateZ(0)',
       transformOrigin: 'top left',
       background: '#3a9bdc',
     };

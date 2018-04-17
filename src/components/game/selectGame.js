@@ -33,7 +33,7 @@ class SelectGame extends Component {
   };
 
   render() {
-    const { classes,allGamesConfig } = this.props;
+    const { classes, allGamesConfig } = this.props;
     const { spacing } = this.state;
     return (
       <div className={classes.root}>

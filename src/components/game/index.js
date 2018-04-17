@@ -105,9 +105,7 @@ class Index extends Component {
       <div>
         {this.getActivePage()}
         {activePageNum > 0 && controlButtons}
-        <div style={{ marginTop: '100px' }}>
-          { activePageNum === 0 && <EventsTable events={events} /> }
-        </div>
+        <div style={{ marginTop: '100px' }}>{activePageNum === 0 && <EventsTable events={events} />}</div>
       </div>
     );
   }
@@ -137,7 +135,8 @@ class Index extends Component {
           />
         );
       }
-      default:return null
+      default:
+        return null;
     }
   };
 }
