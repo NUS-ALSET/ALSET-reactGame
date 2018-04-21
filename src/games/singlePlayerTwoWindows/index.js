@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import Util from "../../commonFuncs/index";
-import DefaultConfig from "./code/defaultConfig/gemCollectorConfig.json";
-import GemCollector from "./code/";
+import DefaultConfig from "./code/defaultConfig/singlePlayerTwoWindowsConfig.json";
+import SinglePlayerTwoWindows from "./code/";
 
 export default class ALSETReactGame extends Component{
   constructor(props){
@@ -12,7 +12,7 @@ export default class ALSETReactGame extends Component{
   render() {
       var gameData = this.getGameData(this.props.game);
       var getCommands = Util.getCommands;
-      return <GemCollector
+      return <SinglePlayerTwoWindows
         onPlay={this.props.onPlay}
         onPause={this.props.onPause}
         onEnd={this.props.onEnd}
