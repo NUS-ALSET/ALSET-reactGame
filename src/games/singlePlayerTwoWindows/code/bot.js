@@ -78,7 +78,7 @@ class Character extends Component {
     Array.from(collectives).forEach(collective => {
       if (Util.rect2Rect(collective, player)) {
         var collectiveId = collective.getAttribute("data-key");
-        Store.removeCollective(this.props.charId, collectiveId);
+        Store.removeCollective(this.props.gameId, collectiveId);
       }
     });
   }

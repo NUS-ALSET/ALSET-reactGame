@@ -66,7 +66,8 @@ class singlePlayerTwoWindowsStore {
       stoneObj.y =
         Math.floor(Math.random() * (gameHeight / size - 0) + 0) * size;
       stoneObj.size = size;
-      this.collectives[gameId].push(stoneObj);
+      this.collectives[0].push(stoneObj);
+      this.collectives[1].push(stoneObj);
     }
   }
   removeCollective(gameId, colId) {
