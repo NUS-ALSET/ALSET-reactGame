@@ -3,6 +3,7 @@ import React from 'react';
 import GemCollector from './games/gemCollector/';
 import SinglePlayerTwoWindows from './games/singlePlayerTwoWindows/';
 import SquadGame from './games/squadGame/';
+import PassengerPickup from './games/passengerPickup/';
 
 const AlsetReactGame = props => {
   switch (props.game) {
@@ -15,6 +16,9 @@ const AlsetReactGame = props => {
     }
     case 'squadGame': {
       return <SquadGame {...props} />;
+    }
+    case 'passengerPickup': {
+      return <PassengerPickup {...props} />;
     }
     // create a case here for new game
     default: {

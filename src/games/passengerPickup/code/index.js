@@ -5,11 +5,12 @@ import Character from './character';
 import Bot from './bot';
 import Collectives from './collectives';
 import Obstacle from './obstacle';
+import Halt from './halt';
 import Controls from './controls';
 import CodeEditor from './code-editor';
-import Store from './store/singlePlayerTwoWindows';
+import Store from './store/passengerPickup';
 
-export default class PassengerPickUp extends Component {
+export default class PassengerPickup extends Component {
   componentDidMount() {
     //console.log(document.getElementById("codeEditor").value);
     if (document.getElementById("codeEditor"))
@@ -43,7 +44,7 @@ export default class PassengerPickUp extends Component {
     };
   }
   render() {
-    console.log(this.props.gameData);
+    console.log(this.props);
     return <div><div style={this.getWrapperStyles()}>
       <Loop>
         <Controls
@@ -57,6 +58,7 @@ export default class PassengerPickUp extends Component {
           <div>{this.props.gameData.config.game1.obstacles.map((obstacle, index) => {
             return <Obstacle key={index} obstacle={obstacle} index={index} />;
           })}</div>
+          <Halt/>
           <Collectives
             type={this.props.gameData.config.game1.collectives.type}
             size={this.props.gameData.config.game1.collectives.size}
@@ -68,7 +70,17 @@ export default class PassengerPickUp extends Component {
             || this.props.gameData.mode == "player-vs-player") &&
             <Character
               gameId={0}
-              type={this.props.gameData.config.game1.character.type}
+              charId={0}
+              type={this.props.gameData.config.game1.character1.type}
+              keys={this.props.gameData.player1Keys}
+              
+            />}
+          {(this.props.gameData.player == "player1" && this.props.gameData.mode == "player-vs-bot"
+            || this.props.gameData.mode == "player-vs-player") &&
+            <Character
+              gameId={0}
+              charId={1}
+              type={this.props.gameData.config.game1.character2.type}
               keys={this.props.gameData.player1Keys}
               
             />}
@@ -76,7 +88,20 @@ export default class PassengerPickUp extends Component {
             || this.props.gameData.mode == "bot-vs-bot") &&
             <Bot
               gameId={0}
-              type={this.props.gameData.config.game1.character.type}
+              charId={0}
+              type={this.props.gameData.config.game1.character1.type}
+              getCommands={this.props.getCommands}
+              showCodeEditor={this.props.gameData.showCodeEditor}
+              player1Function={this.props.player1Function}
+              onError={this.props.onError}
+              
+            />}
+          {(this.props.gameData.player == "player2" && this.props.gameData.mode == "player-vs-bot"
+            || this.props.gameData.mode == "bot-vs-bot") &&
+            <Bot
+              gameId={0}
+              charId={1}
+              type={this.props.gameData.config.game1.character2.type}
               getCommands={this.props.getCommands}
               showCodeEditor={this.props.gameData.showCodeEditor}
               player1Function={this.props.player1Function}
@@ -89,6 +114,7 @@ export default class PassengerPickUp extends Component {
           <div>{this.props.gameData.config.game2.obstacles.map((obstacle, index) => {
             return <Obstacle key={index} obstacle={obstacle} index={index} />;
           })}</div>
+          <Halt/>
           <Collectives
             type={this.props.gameData.config.game2.collectives.type}
             size={this.props.gameData.config.game2.collectives.size}
@@ -101,7 +127,16 @@ export default class PassengerPickUp extends Component {
             <Character
               gameId={1}
               charId={0}
-              type={this.props.gameData.config.game2.character.type}
+              type={this.props.gameData.config.game2.character1.type}
+              keys={this.props.gameData.player2Keys}
+              
+            />}
+          {(this.props.gameData.player == "player2" && this.props.gameData.mode == "player-vs-bot"
+            || this.props.gameData.mode == "player-vs-player") &&
+            <Character
+              gameId={1}
+              charId={1}
+              type={this.props.gameData.config.game2.character2.type}
               keys={this.props.gameData.player2Keys}
               
             />}
@@ -110,7 +145,19 @@ export default class PassengerPickUp extends Component {
             <Bot
               gameId={1}
               charId={0}
-              type={this.props.gameData.config.game2.character.type}
+              type={this.props.gameData.config.game2.character1.type}
+              getCommands={this.props.getCommands}
+              showCodeEditor={this.props.gameData.showCodeEditor}
+              player2Function={this.props.player2Function}
+              onError={this.props.onError}
+              
+            />}
+          {(this.props.gameData.player == "player1" && this.props.gameData.mode == "player-vs-bot"
+            || this.props.gameData.mode == "bot-vs-bot") &&
+            <Bot
+              gameId={1}
+              charId={1}
+              type={this.props.gameData.config.game2.character2.type}
               getCommands={this.props.getCommands}
               showCodeEditor={this.props.gameData.showCodeEditor}
               player2Function={this.props.player2Function}
@@ -118,7 +165,9 @@ export default class PassengerPickUp extends Component {
               
             />}
         </Stage></div>
+
       </Loop>
+
     </div>
       {this.props.gameData.showCodeEditor ? <CodeEditor /> : ""}</div>
   }
