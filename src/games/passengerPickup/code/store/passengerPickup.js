@@ -1,5 +1,5 @@
-import { observable, computed, extendObservable } from "mobx";
-import squadConfig from "../defaultConfig/passengerPickup.json";
+import { observable, computed, extendObservable } from 'mobx';
+import squadConfig from '../defaultConfig/passengerPickup.json';
 
 class squadStore {
   constructor() {
@@ -15,12 +15,12 @@ class squadStore {
           squadConfig.game2.character2.startingPoint
         ]
       ],
-      direction: [["left", "up"], ["left", "up"]],
+      direction: [['left', 'up'], ['left', 'up']],
       currentControllable: [1, 1],
       collectives: [[], []],
       timeStampData: Date.now(),
       score: [0, 0],
-      mode: "play",
+      mode: 'play',
       func: false,
       funcNeedUpdate: false,
       freePlaces:[[0,0],[0,0]]
@@ -28,28 +28,28 @@ class squadStore {
   }
   moveCharacter(gameId, characterId) {
     switch (this.direction[gameId][characterId]) {
-      case "up":
+      case 'up':
         this.position[gameId][characterId].y -=
-          squadConfig["game" + (gameId + 1)][
-            "character" + (characterId + 1)
+          squadConfig['game' + (gameId + 1)][
+            'character' + (characterId + 1)
           ].speed;
         break;
-      case "down":
+      case 'down':
         this.position[gameId][characterId].y +=
-          squadConfig["game" + (gameId + 1)][
-            "character" + (characterId + 1)
+          squadConfig['game' + (gameId + 1)][
+            'character' + (characterId + 1)
           ].speed;
         break;
-      case "left":
+      case 'left':
         this.position[gameId][characterId].x -=
-          squadConfig["game" + (gameId + 1)][
-            "character" + (characterId + 1)
+          squadConfig['game' + (gameId + 1)][
+            'character' + (characterId + 1)
           ].speed;
         break;
-      case "right":
+      case 'right':
         this.position[gameId][characterId].x +=
-          squadConfig["game" + (gameId + 1)][
-            "character" + (characterId + 1)
+          squadConfig['game' + (gameId + 1)][
+            'character' + (characterId + 1)
           ].speed;
         break;
       default:
@@ -58,10 +58,10 @@ class squadStore {
   }
   restartCharacter(gameId, charId) {
     this.position[gameId][charId] =
-      squadConfig["game" + (gameId + 1)][
-        "character" + (charId + 1)
+      squadConfig['game' + (gameId + 1)][
+        'character' + (charId + 1)
       ].startingPoint;
-    this.direction[gameId] = ["left", "up"];
+    this.direction[gameId] = ['left', 'up'];
     this.time = squadConfig.time;
     this.score = [0, 0];
     this.freePlaces = [[0,0],[0,0]];
@@ -77,10 +77,10 @@ class squadStore {
     this.timestamp = Date.now();
   }
   generateCollectives(gameId, min, max, size) {
-    if (!document.getElementById("game" + gameId)) return;
-    var gameWidth = document.getElementById("game" + gameId).childNodes[0]
+    if (!document.getElementById('game' + gameId)) return;
+    var gameWidth = document.getElementById('game' + gameId).childNodes[0]
       .childNodes[0].offsetWidth;
-    var gameHeight = document.getElementById("game" + gameId).childNodes[0]
+    var gameHeight = document.getElementById('game' + gameId).childNodes[0]
       .childNodes[0].offsetHeight;
     if (this.collectives[gameId].length > 0) return;
     var stonesQuant = Math.floor(Math.random() * (max - min + 1) + min);

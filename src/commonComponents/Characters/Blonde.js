@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Sprite from './Sprite';
 import { observer } from 'mobx-react';
-import img from "../../commonGameAssets/characters/blonde.png";
+import img from '../../commonGameAssets/characters/blonde.png';
 
 class Blonde extends Component {
   getAnimationState() {
@@ -35,7 +35,7 @@ class Blonde extends Component {
   render() {
     this.getAnimationState();
     return (
-      <div id={"character"} style={this.getWrapperStyles()}>
+      <div id={'character'} style={this.getWrapperStyles()}>
         <Sprite
           repeat={true}
           tileWidth={64}
@@ -47,7 +47,7 @@ class Blonde extends Component {
           steps={[6, 6, 6, 6, 7, 7, 7, 7, 8, 8, 8, 8, 5, 5, 5, 5, 12, 12, 12, 12, 5]}
         />
       </div>
-    )
+    );
   }
 }
-export default observer(Blonde)
+export default observer(Blonde);

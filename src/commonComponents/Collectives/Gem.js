@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import img from "../../commonGameAssets/collective/gem.png";
+import img from '../../commonGameAssets/collective/gem.png';
 
 export default class Gem extends Component {
   constructor(props) {

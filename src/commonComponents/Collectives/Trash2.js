@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import img from "../../commonGameAssets/collective/trash2.png";
+import img from '../../commonGameAssets/collective/trash2.png';
 
 export default class Coin extends Component {
   constructor(props) {

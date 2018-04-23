@@ -1,8 +1,8 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
-import Util from "../../commonFuncs/index";
-import DefaultConfig from "./code/defaultConfig/squadConfig.json";
-import SquadGame from "./code/";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import Util from '../../commonFuncs/index';
+import DefaultConfig from './code/defaultConfig/squadConfig.json';
+import SquadGame from './code/';
 
 export default class ALSETReactGame extends Component{
   constructor(props){
@@ -22,7 +22,7 @@ export default class ALSETReactGame extends Component{
         player2Function={this.props.player2Function}
         gameData={gameData}
         getCommands={getCommands}
-      />
+      />;
   }
   getGameData(gameType){
       var data = {};

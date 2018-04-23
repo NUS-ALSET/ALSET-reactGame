@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { TileMap } from 'react-game-kit';
-import PropTypes from "prop-types";
-import img from "../../commonGameAssets/tiles/grass.jpg";
+import PropTypes from 'prop-types';
+import img from '../../commonGameAssets/tiles/grass.jpg';
 
 export default class Grass extends Component {
   static contextTypes = {

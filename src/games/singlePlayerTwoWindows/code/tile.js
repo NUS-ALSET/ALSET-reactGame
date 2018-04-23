@@ -1,14 +1,14 @@
-import React, { Component } from "react";
-import { TileMap } from "react-game-kit";
+import React, { Component } from 'react';
+import { TileMap } from 'react-game-kit';
 
-import Grass from "../../../commonComponents/Tiles/Grass";
-import Sand from "../../../commonComponents/Tiles/Sand";
-import Concrete from "../../../commonComponents/Tiles/Concrete";
-import Building from "../../../commonComponents/Tiles/Building";
-import RoadCross from "../../../commonComponents/Tiles/RoadCross";
-import RoadLeftRight from "../../../commonComponents/Tiles/RoadLeftRight";
-import RoadUpDown from "../../../commonComponents/Tiles/RoadUpDown";
-import Roof from "../../../commonComponents/Tiles/Roof";
+import Grass from '../../../commonComponents/Tiles/Grass';
+import Sand from '../../../commonComponents/Tiles/Sand';
+import Concrete from '../../../commonComponents/Tiles/Concrete';
+import Building from '../../../commonComponents/Tiles/Building';
+import RoadCross from '../../../commonComponents/Tiles/RoadCross';
+import RoadLeftRight from '../../../commonComponents/Tiles/RoadLeftRight';
+import RoadUpDown from '../../../commonComponents/Tiles/RoadUpDown';
+import Roof from '../../../commonComponents/Tiles/Roof';
 
 export default class Tile extends Component {
   render() {
@@ -16,21 +16,21 @@ export default class Tile extends Component {
       <div>
         {this.props.tiles.map((tile, index) => {
           switch (tile.type) {
-            case "grass":
+            case 'grass':
               return <Grass key={index} tileData={tile} />;
-            case "concrete":
+            case 'concrete':
               return <Concrete key={index} tileData={tile} />;
-            case "sand":
+            case 'sand':
               return <Sand key={index} tileData={tile} />;
-            case "building":
+            case 'building':
               return <Building key={index} tileData={tile} />;
-            case "roadCross":
+            case 'roadCross':
               return <RoadCross key={index} tileData={tile} />;
-            case "roadLeftRight":
+            case 'roadLeftRight':
               return <RoadLeftRight key={index} tileData={tile} />;
-            case "roadUpDown":
+            case 'roadUpDown':
               return <RoadUpDown key={index} tileData={tile} />;
-            case "roof":
+            case 'roof':
               return <Roof key={index} tileData={tile} />;
             default:
               return <Grass key={index} tileData={tile} />;

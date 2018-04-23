@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import img from "../../../commonGameAssets/obstacles/halt.png";
+import img from '../../../commonGameAssets/obstacles/halt.png';
 
 export default class Halt extends Component {
   constructor(props) {
@@ -11,8 +11,8 @@ export default class Halt extends Component {
       position: 'absolute',
       transform: 'translate(0px, 0px) translateZ(0)',
       transformOrigin: 'top left',
-      width: "100px",
-      height: "100px"
+      width: '100px',
+      height: '100px'
     };
   }
 

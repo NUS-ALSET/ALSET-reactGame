@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Sprite from './Sprite';
 import { observer } from 'mobx-react';
-import img from "../../commonGameAssets/characters/drone2.png";
+import img from '../../commonGameAssets/characters/drone2.png';
 
 class Drone2 extends Component {
   getAnimationState() {
@@ -31,13 +31,13 @@ class Drone2 extends Component {
       position: 'absolute',
       transform: `translate(${targetX}px, ${targetY}px)`,
       transformOrigin: 'left top',
-      width: "64px",
-      height: "64px"
+      width: '64px',
+      height: '64px'
     };
   }
   render() {
     return (
-      <div id={"character"} style={this.getWrapperStyles()}>
+      <div id={'character'} style={this.getWrapperStyles()}>
         <Sprite
           repeat={true}
           tileWidth={224}
@@ -49,7 +49,7 @@ class Drone2 extends Component {
           steps={[0, 0, 0, 0]}
         />
       </div>
-    )
+    );
   }
 }
-export default observer(Drone2)
+export default observer(Drone2);

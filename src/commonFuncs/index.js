@@ -26,10 +26,10 @@ class Utils {
     var parentLeft = parentOffset.left;
     var parentRight = parentOffset.right;
     var parentBottom = parentOffset.bottom;
-    if (direction == "left") return left <= parentLeft ? false : true;
-    else if (direction == "right") return right >= parentRight ? false : true;
-    else if (direction == "up") return top <= parentTop ? false : true;
-    else if (direction == "down") return bottom >= parentBottom ? false : true;
+    if (direction == 'left') return left <= parentLeft ? false : true;
+    else if (direction == 'right') return right >= parentRight ? false : true;
+    else if (direction == 'up') return top <= parentTop ? false : true;
+    else if (direction == 'down') return bottom >= parentBottom ? false : true;
   }
   rundomGenerateCollectives(min, max, size, width, height) {
     var collectives = [];

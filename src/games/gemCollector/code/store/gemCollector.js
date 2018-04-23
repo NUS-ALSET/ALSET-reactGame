@@ -1,5 +1,5 @@
-import { observable, computed, extendObservable } from "mobx";
-import gemCollectorConfig from "../defaultConfig/gemCollectorConfig.json";
+import { observable, computed, extendObservable } from 'mobx';
+import gemCollectorConfig from '../defaultConfig/gemCollectorConfig.json';
 
 class gemCollectorStore {
   constructor() {
@@ -9,32 +9,32 @@ class gemCollectorStore {
         gemCollectorConfig.game.character1.startingPoint,
         gemCollectorConfig.game.character2.startingPoint
       ],
-      direction: ["left", "up"],
+      direction: ['left', 'up'],
       collectives: [],
       timeStampData: Date.now(),
       score: [0, 0],
-      mode: "play",
+      mode: 'play',
       func: false,
       funcNeedUpdate: false
     });
   }
   moveCharacter(characterId) {
     switch (this.direction[characterId]) {
-      case "up":
+      case 'up':
         this.position[characterId].y -=
-          gemCollectorConfig["game"]["character" + (characterId + 1)].speed;
+          gemCollectorConfig['game']['character' + (characterId + 1)].speed;
         break;
-      case "down":
+      case 'down':
         this.position[characterId].y +=
-          gemCollectorConfig["game"]["character" + (characterId + 1)].speed;
+          gemCollectorConfig['game']['character' + (characterId + 1)].speed;
         break;
-      case "left":
+      case 'left':
         this.position[characterId].x -=
-          gemCollectorConfig["game"]["character" + (characterId + 1)].speed;
+          gemCollectorConfig['game']['character' + (characterId + 1)].speed;
         break;
-      case "right":
+      case 'right':
         this.position[characterId].x +=
-          gemCollectorConfig["game"]["character" + (characterId + 1)].speed;
+          gemCollectorConfig['game']['character' + (characterId + 1)].speed;
         break;
       default:
         break;
@@ -42,8 +42,8 @@ class gemCollectorStore {
   }
   restartCharacter(charId) {
     this.position[charId] =
-      gemCollectorConfig["game"]["character" + (charId + 1)].startingPoint;
-    this.direction = ["left", "up"];
+      gemCollectorConfig['game']['character' + (charId + 1)].startingPoint;
+    this.direction = ['left', 'up'];
     this.time = gemCollectorConfig.time;
     this.score = [0, 0];
   }
@@ -51,10 +51,10 @@ class gemCollectorStore {
     this.direction[characterId] = direction;
   }
   generateCollectives(min, max, size) {
-    if (!document.getElementById("game0")) return;
-    var gameWidth = document.getElementById("game0").childNodes[0].childNodes[0]
+    if (!document.getElementById('game0')) return;
+    var gameWidth = document.getElementById('game0').childNodes[0].childNodes[0]
       .offsetWidth;
-    var gameHeight = document.getElementById("game0").childNodes[0]
+    var gameHeight = document.getElementById('game0').childNodes[0]
       .childNodes[0].offsetHeight;
     if (this.collectives.length > 0) return;
     var stonesQuant = Math.floor(Math.random() * (max - min + 1) + min);

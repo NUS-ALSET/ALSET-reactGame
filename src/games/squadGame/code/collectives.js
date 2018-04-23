@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types';
 import Store from './store/squad';
 import Coin from '../../../commonComponents/Collectives/Coin';
 import Gem from '../../../commonComponents/Collectives/Gem';
@@ -24,7 +24,7 @@ class Collectives extends Component {
     this.loopID = this.context.loop.subscribe(this.loop);
   }
   componentWillUnmount() {
-    console.log("unmounting collective");
+    console.log('unmounting collective');
     this.context.loop.unsubscribe(this.loopID);
   }
   render() {
@@ -32,32 +32,32 @@ class Collectives extends Component {
       case 'coin':
         return <div>{Store.collectives[this.props.gameId].map((collective, index) => {
           return <Coin key={index} collectiveData={collective} index={index} />;
-        })}</div>
+        })}</div>;
       case 'gem':
         return <div>{Store.collectives[this.props.gameId].map((collective, index) => {
           return <Gem key={index} collectiveData={collective} index={index} />;
-        })}</div>
+        })}</div>;
       case 'passenger':
         return <div>{Store.collectives[this.props.gameId].map((collective, index) => {
           return <Passenger key={index} collectiveData={collective} index={index} />;
-        })}</div>
+        })}</div>;
       case 'passengers':
         return <div>{Store.collectives[this.props.gameId].map((collective, index) => {
           return <Passengers key={index} collectiveData={collective} index={index} />;
-        })}</div>
+        })}</div>;
       case 'trash1':
         return <div>{Store.collectives[this.props.gameId].map((collective, index) => {
           return <Trash1 key={index} collectiveData={collective} index={index} />;
-        })}</div>
+        })}</div>;
       case 'trash2':
         return <div>{Store.collectives[this.props.gameId].map((collective, index) => {
           return <Trash2 key={index} collectiveData={collective} index={index} />;
-        })}</div>
+        })}</div>;
       default:
         return <div>{Store.collectives[this.props.gameId].map((collective, index) => {
           return <Coin key={index} collectiveData={collective} index={index} />;
-        })}</div>
+        })}</div>;
     }
   }
 }
-export default observer(Collectives)
+export default observer(Collectives);

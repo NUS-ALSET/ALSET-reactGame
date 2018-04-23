@@ -16,25 +16,25 @@ export default class Tile extends Component {
       this.props.tiles.map((tile, index) => {
         switch (tile.type) {
           case 'grass':
-            return <Grass key={index} tileData={tile} />
+            return <Grass key={index} tileData={tile} />;
           case 'concrete':
-            return <Concrete key={index} tileData={tile} />
+            return <Concrete key={index} tileData={tile} />;
           case 'sand':
-            return <Sand key={index} tileData={tile} />
+            return <Sand key={index} tileData={tile} />;
           case 'building':
-            return <Building key={index} tileData={tile} />
+            return <Building key={index} tileData={tile} />;
           case 'roadCross':
-            return <RoadCross key={index} tileData={tile} />
+            return <RoadCross key={index} tileData={tile} />;
           case 'roadLeftRight':
-            return <RoadLeftRight key={index} tileData={tile} />
+            return <RoadLeftRight key={index} tileData={tile} />;
           case 'roadUpDown':
-            return <RoadUpDown key={index} tileData={tile} />
+            return <RoadUpDown key={index} tileData={tile} />;
           case 'roof':
-            return <Roof key={index} tileData={tile} />
+            return <Roof key={index} tileData={tile} />;
           default:
-            return <Grass key={index} tileData={tile} />
+            return <Grass key={index} tileData={tile} />;
         }
       })
-    }</div>
+    }</div>;
   }
 }

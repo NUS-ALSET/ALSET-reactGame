@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { TileMap } from 'react-game-kit';
-import PropTypes from "prop-types";
-import img from "../../commonGameAssets/tiles/RoadCrossed.png";
+import PropTypes from 'prop-types';
+import img from '../../commonGameAssets/tiles/RoadCrossed.png';
 
 export default class RoadCrossed extends Component {
   static contextTypes = {

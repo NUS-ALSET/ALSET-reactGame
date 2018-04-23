@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types';
 import Store from './store/passengerPickup';
 import { observer } from 'mobx-react';
 
@@ -15,19 +15,19 @@ class Controls extends Component {
     this.startCountDown();
   }
   loop() {
-    if (Store.time == 0 && Store.mode != "restart" && Store.mode != "pause") {
-      Store.mode = "pause";
+    if (Store.time == 0 && Store.mode != 'restart' && Store.mode != 'pause') {
+      Store.mode = 'pause';
       if (this.props.onEnd) {
-        var player = Store.score[0] > Store.score[1] ? "player1" : "player2";
+        var player = Store.score[0] > Store.score[1] ? 'player1' : 'player2';
         this.props.onEnd(player);
       }
     }
   }
   startCountDown() {
     setInterval(() => {
-      if (Store.mode == "play" && Store.time > 0)
+      if (Store.mode == 'play' && Store.time > 0)
         Store.time--;
-    }, 1000)
+    }, 1000);
   }
   pauseResumeGame() {
     if (Store.mode == 'pause') {
@@ -50,7 +50,7 @@ class Controls extends Component {
       Store.mode = 'play';
       if (this.props.onPlay)
         this.props.onPlay();
-    }, 1000)
+    }, 1000);
   }
 
   getWrapperStyles() {
@@ -74,43 +74,43 @@ class Controls extends Component {
     //}
     return <div>
       {Store.time == 0 && <div style={{
-        position: "absolute",
-        background: "#7eca84",
-        width: "100%",
-        height: "100%",
+        position: 'absolute',
+        background: '#7eca84',
+        width: '100%',
+        height: '100%',
         zIndex: 2
       }}>
         <h1 style={{
-          marginTop: "30%",
-          textAlign: "center",
-          color: "#fff"
-        }}>{Store.score[0] > Store.score[1] ? "Player 1 Win!!!" : "Player 2 Win!!!"}</h1>
+          marginTop: '30%',
+          textAlign: 'center',
+          color: '#fff'
+        }}>{Store.score[0] > Store.score[1] ? 'Player 1 Win!!!' : 'Player 2 Win!!!'}</h1>
         <button onClick={() => this.restartGame()}
           style={{
-            width: "30%",
-            marginLeft: "35%",
-            height: "40px",
-            background: "#7eca84",
-            border: "3px solid #fff",
-            fontSize: "19px",
-            textTransform: "uppercase",
-            color: "#fff",
-            lineHeight: "36px"
+            width: '30%',
+            marginLeft: '35%',
+            height: '40px',
+            background: '#7eca84',
+            border: '3px solid #fff',
+            fontSize: '19px',
+            textTransform: 'uppercase',
+            color: '#fff',
+            lineHeight: '36px'
           }}
         >Restart</button>
       </div>}
-      <h3 style={{ position: "fixed", left: 0, top: "12px", zIndex: 1 }}>Player 1 score: {Store.score[0]}</h3>
-      <h4 style={{ position: "fixed", left: 0, top: "32px", zIndex: 1 }}>Car1: {Store.freePlaces[0][0]}</h4>
-      <h4 style={{ position: "fixed", left: "60px", top: "32px", zIndex: 1 }}>Car2: {Store.freePlaces[0][1]}</h4>
+      <h3 style={{ position: 'fixed', left: 0, top: '12px', zIndex: 1 }}>Player 1 score: {Store.score[0]}</h3>
+      <h4 style={{ position: 'fixed', left: 0, top: '32px', zIndex: 1 }}>Car1: {Store.freePlaces[0][0]}</h4>
+      <h4 style={{ position: 'fixed', left: '60px', top: '32px', zIndex: 1 }}>Car2: {Store.freePlaces[0][1]}</h4>
 
-      <h3 style={{ position: "fixed", right: 0, top: "12px", zIndex: 1 }}>Player 2 score: {Store.score[1]}</h3>
-      <h4 style={{ position: "fixed", right: 0, top: "32px", zIndex: 1 }}>Car1: {Store.freePlaces[1][0]}</h4>
-      <h4 style={{ position: "fixed", right: "60px", top: "32px", zIndex: 1 }}>Car2: {Store.freePlaces[1][1]}</h4>
+      <h3 style={{ position: 'fixed', right: 0, top: '12px', zIndex: 1 }}>Player 2 score: {Store.score[1]}</h3>
+      <h4 style={{ position: 'fixed', right: 0, top: '32px', zIndex: 1 }}>Car1: {Store.freePlaces[1][0]}</h4>
+      <h4 style={{ position: 'fixed', right: '60px', top: '32px', zIndex: 1 }}>Car2: {Store.freePlaces[1][1]}</h4>
 
-      <h3 style={{ position: "fixed", left: "45%", top: 0 }}>Time left: {Store.time}</h3>
-      <button style={{ position: "fixed", left: 0, top: 0, zIndex: 1 }} onClick={() => this.restartGame()}>Restart</button>
-      <button style={{ position: "fixed", left: "70px", top: 0, zIndex: 1 }} onClick={() => this.pauseResumeGame()}>{Store.mode == "play" ? "Pause" : "Resume"}</button>
-    </div>
+      <h3 style={{ position: 'fixed', left: '45%', top: 0 }}>Time left: {Store.time}</h3>
+      <button style={{ position: 'fixed', left: 0, top: 0, zIndex: 1 }} onClick={() => this.restartGame()}>Restart</button>
+      <button style={{ position: 'fixed', left: '70px', top: 0, zIndex: 1 }} onClick={() => this.pauseResumeGame()}>{Store.mode == 'play' ? 'Pause' : 'Resume'}</button>
+    </div>;
   }
 }
-export default observer(Controls)
+export default observer(Controls);
