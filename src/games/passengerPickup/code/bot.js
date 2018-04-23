@@ -34,6 +34,7 @@ class Bot extends Component {
         Store.moveCharacter(this.props.gameId, this.props.charId);
       var world = {
         player: Store.position[this.props.gameId][this.props.charId],
+        freePlaces: Store.freePlaces[this.props.gameId][this.props.charId],
         collectives: Store.collectives[this.props.gameId]
       };
       if (this.props.showCodeEditor) {
@@ -64,12 +65,13 @@ class Bot extends Component {
       }
     }
     this.getCollectives();
+    this.loadOffPassengers();
     if (Store.mode == 'restart') {
       Store.restartCharacter(this.props.gameId, this.props.charId);
     }
   }
   getCollectives() {
-    var player = document.getElementById('bt' + this.props.charId + '-' + this.props.gameId).childNodes[0];
+    var player = document.getElementById('bt' + this.props.charId + '-' + this.props.gameId);
     var parentEl = player.parentElement;
     player = player.childNodes[0];
     var collectives = parentEl.getElementsByClassName('collective');
@@ -81,10 +83,10 @@ class Bot extends Component {
     });
   }
   loadOffPassengers(){
-    var player = document.getElementById('bt' + this.props.charId + '-' + this.props.gameId);
+    var player = document.getElementById('bt' + this.props.charId + '-' + this.props.gameId).childNodes[0];
     var halt = document.getElementById('game'+this.props.gameId).getElementsByClassName('halt')[0];
     if(Util.rect2Rect(halt, player)){
-      Store.loadOutPassengers(this.props.gameId, this.props.playerId);
+      Store.loadOutPassengers(this.props.gameId, this.props.charId);
     }
   }
   componentDidMount() {

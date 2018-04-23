@@ -51,7 +51,6 @@ export default class PassengerPickup extends Component {
           onPlay={this.props.onPlay}
           onPause={this.props.onPause}
           onEnd={this.props.onEnd}
-          
         />
         <div id={'game0'} style={this.getGameWrapperStyles()}><Stage style={this.getGameStyles()}>
           <Tile tiles={this.props.gameData.config.game1.tiles} />
@@ -73,7 +72,6 @@ export default class PassengerPickup extends Component {
               charId={0}
               type={this.props.gameData.config.game1.character1.type}
               keys={this.props.gameData.player1Keys}
-              
             />}
           {(this.props.gameData.player == 'player1' && this.props.gameData.mode == 'player-vs-bot'
             || this.props.gameData.mode == 'player-vs-player') &&
@@ -82,7 +80,6 @@ export default class PassengerPickup extends Component {
               charId={1}
               type={this.props.gameData.config.game1.character2.type}
               keys={this.props.gameData.player1Keys}
-              
             />}
           {(this.props.gameData.player == 'player2' && this.props.gameData.mode == 'player-vs-bot'
             || this.props.gameData.mode == 'bot-vs-bot') &&
@@ -94,7 +91,6 @@ export default class PassengerPickup extends Component {
               showCodeEditor={this.props.gameData.showCodeEditor}
               player1Function={this.props.player1Function}
               onError={this.props.onError}
-              
             />}
           {(this.props.gameData.player == 'player2' && this.props.gameData.mode == 'player-vs-bot'
             || this.props.gameData.mode == 'bot-vs-bot') &&
@@ -106,7 +102,6 @@ export default class PassengerPickup extends Component {
               showCodeEditor={this.props.gameData.showCodeEditor}
               player1Function={this.props.player1Function}
               onError={this.props.onError}
-              
             />}
         </Stage></div>
         <div id={'game1'} style={this.getGameWrapperStyles()}><Stage style={this.getGameStyles()}>
@@ -129,7 +124,6 @@ export default class PassengerPickup extends Component {
               charId={0}
               type={this.props.gameData.config.game2.character1.type}
               keys={this.props.gameData.player2Keys}
-              
             />}
           {(this.props.gameData.player == 'player2' && this.props.gameData.mode == 'player-vs-bot'
             || this.props.gameData.mode == 'player-vs-player') &&
@@ -138,7 +132,6 @@ export default class PassengerPickup extends Component {
               charId={1}
               type={this.props.gameData.config.game2.character2.type}
               keys={this.props.gameData.player2Keys}
-              
             />}
           {(this.props.gameData.player == 'player1' && this.props.gameData.mode == 'player-vs-bot'
             || this.props.gameData.mode == 'bot-vs-bot') &&
@@ -150,7 +143,6 @@ export default class PassengerPickup extends Component {
               showCodeEditor={this.props.gameData.showCodeEditor}
               player2Function={this.props.player2Function}
               onError={this.props.onError}
-              
             />}
           {(this.props.gameData.player == 'player1' && this.props.gameData.mode == 'player-vs-bot'
             || this.props.gameData.mode == 'bot-vs-bot') &&
@@ -162,12 +154,9 @@ export default class PassengerPickup extends Component {
               showCodeEditor={this.props.gameData.showCodeEditor}
               player2Function={this.props.player2Function}
               onError={this.props.onError}
-              
             />}
         </Stage></div>
-
       </Loop>
-
     </div>
       {this.props.gameData.showCodeEditor ? <CodeEditor /> : ''}</div>;
   }

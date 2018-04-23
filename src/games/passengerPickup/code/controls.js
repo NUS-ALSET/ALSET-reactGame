@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Store from './store/passengerPickup';
 import { observer } from 'mobx-react';
+import icon from './localAsset/passenger_icon.png';
 
 class Controls extends Component {
   static contextTypes = {
@@ -67,11 +68,27 @@ class Controls extends Component {
   componentWillUnmount() {
     this.context.loop.unsubscribe(this.loopID);
   }
-
+  getRows(gameId, carId, floatDirection){
+    var car=[];
+    for(var i=0;i<Store.freePlaces[gameId][carId];i++){
+      car.push('car');
+    }
+    return car.map((row, index) =><div style={{
+      backgroundImage: 'url('+icon+')',
+      backgroundSize:'contain',
+      backgroundColor:'#9cff9ac2',
+      width:'20px',
+      height:'20px',
+      float:floatDirection,
+      borderRadius:'5px',
+      margin:'2px'
+    }} key={index}></div>);
+  }
   render() {
-    //for(var i=0;i<Store.freePlaces[0][0];i++){
-      
-    //}
+    var car1=[];
+    for(var i=0;i<Store.freePlaces[0][0];i++){
+      car1.push(<div>+</div>);
+    }
     return <div>
       {Store.time == 0 && <div style={{
         position: 'absolute',
@@ -100,12 +117,12 @@ class Controls extends Component {
         >Restart</button>
       </div>}
       <h3 style={{ position: 'fixed', left: 0, top: '12px', zIndex: 1 }}>Player 1 score: {Store.score[0]}</h3>
-      <h4 style={{ position: 'fixed', left: 0, top: '32px', zIndex: 1 }}>Car1: {Store.freePlaces[0][0]}</h4>
-      <h4 style={{ position: 'fixed', left: '60px', top: '32px', zIndex: 1 }}>Car2: {Store.freePlaces[0][1]}</h4>
+      <h4 style={{ position: 'fixed', left: 0, top: '32px', zIndex: 1 }}>Car 1: <div>{this.getRows(0, 0, 'left')}</div></h4>
+      <h4 style={{ position: 'fixed', left: '110px', top: '32px', zIndex: 1 }}>Car 2: <div>{this.getRows(0, 1, 'left')}</div></h4>
 
       <h3 style={{ position: 'fixed', right: 0, top: '12px', zIndex: 1 }}>Player 2 score: {Store.score[1]}</h3>
-      <h4 style={{ position: 'fixed', right: 0, top: '32px', zIndex: 1 }}>Car1: {Store.freePlaces[1][0]}</h4>
-      <h4 style={{ position: 'fixed', right: '60px', top: '32px', zIndex: 1 }}>Car2: {Store.freePlaces[1][1]}</h4>
+      <h4 style={{ position: 'fixed', right: 0, top: '32px', zIndex: 1 }}>Car 1: <div>{this.getRows(1, 0, 'right')}</div></h4>
+      <h4 style={{ position: 'fixed', right: '110px', top: '32px', zIndex: 1 }}>Car 2: <div>{this.getRows(1, 1, 'right')}</div></h4>
 
       <h3 style={{ position: 'fixed', left: '45%', top: 0 }}>Time left: {Store.time}</h3>
       <button style={{ position: 'fixed', left: 0, top: 0, zIndex: 1 }} onClick={() => this.restartGame()}>Restart</button>

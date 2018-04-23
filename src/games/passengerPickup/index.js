@@ -11,7 +11,7 @@ export default class ALSETReactGame extends Component{
   }
   render() {
       var gameData = this.getGameData(this.props.game);
-      var getCommands = Util.getCommands;
+      var getCommands = Util.getPassengerCommands;
       return <PassengerPickup
         onPlay={this.props.onPlay}
         onPause={this.props.onPause}

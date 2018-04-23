@@ -99,15 +99,11 @@ class squadStore {
   }
   loadOutPassengers(gameId, playerId){
     this.score[gameId]+=this.freePlaces[gameId][playerId];
-    //console.log(this.freePlaces[gameId][playerId]);
     this.freePlaces[gameId][playerId]=0;
   }
   removeCollective(gameId, playerId, colId) {
-    //console.log(gameId, playerId);
     if(this.freePlaces[gameId][playerId]<4){
-      //console.log(this.freePlaces[gameId][playerId]);
       this.collectives[gameId].splice(colId, 1);
-      //this.score[gameId]++;
       this.freePlaces[gameId][playerId]++;
     }
   }

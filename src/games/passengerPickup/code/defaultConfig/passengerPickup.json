@@ -2187,8 +2187,8 @@
       }
     ],
     "collectives": {
-      "type": "trash1",
-      "size": 40,
+      "type": "passenger",
+      "size": 20,
       "min": 10,
       "max": 30
     }
@@ -4363,8 +4363,8 @@
       }
     ],
     "collectives": {
-      "type": "trash2",
-      "size": 40,
+      "type": "passenger",
+      "size": 20,
       "min": 10,
       "max": 30
     }
