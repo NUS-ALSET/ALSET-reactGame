@@ -87,7 +87,7 @@ class Game extends Component {
     const { showScore = true, showMode = true, onWin } = this.props;
 
     return (
-      <div style={{ height: '60vh', width: '100%' }}>
+      <div className='game' style={{ height: '60vh', width: '100%' }}>
         <Loop>
           <Stage className="index-bg-color">
             <World
@@ -178,6 +178,7 @@ Game.propTypes = {
 
 Game.defaultProps = {
   gameConfig: config,
+  onScoreUpdate: () => {}
 };
 
 export default observer(Game);

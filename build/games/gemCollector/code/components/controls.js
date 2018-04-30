@@ -60,7 +60,7 @@ var Controls = (_temp = _class = function (_Component) {
           },
           'restart'
         ),
-        this.props.store.mode == 'play' ? _react2.default.createElement(
+        this.props.store.mode === 'play' ? _react2.default.createElement(
           'div',
           {
             onClick: function onClick() {

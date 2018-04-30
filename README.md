@@ -1,8 +1,27 @@
-# Installation
+# Directory Structure
+
+- Src Folder
+
+  All of the package code is here. Hit `yarn package:lint` and `yarn package:build` command after finishing up with coding the package.
+
+- Build Folder
+
+  Build of the Src folder + package.json file and can be deploy to NPMjs from here.
+
+- App Folder
+
+  Testing of the package can be done here. Alset-ReactGame component directly import here from Build folder.
+  To start the local dev server Run `yarn start` 
+
+
+
+
+
+# Installation of Package
 
 ```npm i alset-reactgame-test --save```
 
-## How To Use
+## How To Use The Package
 #### Props :
 ```javascript
  <ALSET-ReactGame

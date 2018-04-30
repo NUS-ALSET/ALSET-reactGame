@@ -66,11 +66,11 @@ var WinLoseScreen = (_temp = _class = function (_Component) {
     key: 'checkScore',
     value: function checkScore() {
       if (this.props.store.score[0] >= this.gatherToWin) {
-        this.winText = 'Player 1 Wins!!!';
+        this.winText = 'Player 1 Wins!==';
         this.props.onWin({ winner: 0 });
         return true;
       } else if (this.props.store.score[1] >= this.gatherToWin) {
-        this.winText = 'Player 2 Wins!!!';
+        this.winText = 'Player 2 Wins!==';
         this.props.onWin({ winner: 1 });
         return true;
       } else {

@@ -45,7 +45,7 @@ var GameStore = function () {
       var newTimestamp = Date.now();
       if (newTimestamp - this.timeStampData >= 2000) {
         this.timeStampData = Date.now();
-        if (this.stonesData.length == 0) {
+        if (this.stonesData.length === 0) {
           var stonesQuant = Math.floor(Math.random() * (this.config.maxGems - this.config.minGems + 1) + this.config.minGems);
           for (var i = 0; i < stonesQuant; i++) {
             var stoneObj = { x: 0, y: 0 };

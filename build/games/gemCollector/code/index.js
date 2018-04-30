@@ -152,7 +152,7 @@ var Game = function (_Component) {
 
       return _react2.default.createElement(
         'div',
-        { style: { height: '60vh', width: '100%' } },
+        { className: 'game', style: { height: '60vh', width: '100%' } },
         _react2.default.createElement(
           _reactGameKit.Loop,
           null,
@@ -250,7 +250,8 @@ Game.propTypes = {
 };
 
 Game.defaultProps = {
-  gameConfig: _config2.default
+  gameConfig: _config2.default,
+  onScoreUpdate: function onScoreUpdate() {}
 };
 
 exports.default = (0, _mobxReact.observer)(Game);

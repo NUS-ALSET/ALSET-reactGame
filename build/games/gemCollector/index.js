@@ -315,7 +315,7 @@ var PlayGemCollectorGame = function (_Component) {
   }, {
     key: 'getCommands',
     value: function getCommands(world, playerNum) {
-      //let player = world.bodies.find(body=>{if(body.label=="character"&&body.customId==playerNum-1) return body;});
+      //let player = world.bodies.find(body=>{if(body.label==="character"&&body.customId===playerNum-1) return body;});
       var player = world.players[playerNum - 1];
       var closestGem = false;
       world.stones.forEach(function (stone) {
