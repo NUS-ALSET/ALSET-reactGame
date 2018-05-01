@@ -57,7 +57,6 @@ export default class PassengerPickup extends Component {
           <div>{this.props.gameData.config.game1.obstacles.map((obstacle, index) => {
             return <Obstacle key={index} obstacle={obstacle} index={index} />;
           })}</div>
-          <Halt/>
           <Collectives
             type={this.props.gameData.config.game1.collectives.type}
             size={this.props.gameData.config.game1.collectives.size}
@@ -109,7 +108,6 @@ export default class PassengerPickup extends Component {
           <div>{this.props.gameData.config.game2.obstacles.map((obstacle, index) => {
             return <Obstacle key={index} obstacle={obstacle} index={index} />;
           })}</div>
-          <Halt/>
           <Collectives
             type={this.props.gameData.config.game2.collectives.type}
             size={this.props.gameData.config.game2.collectives.size}

@@ -9,6 +9,7 @@ import RoadCross from '../../../commonComponents/Tiles/RoadCross';
 import RoadLeftRight from '../../../commonComponents/Tiles/RoadLeftRight';
 import RoadUpDown from '../../../commonComponents/Tiles/RoadUpDown';
 import Roof from '../../../commonComponents/Tiles/Roof';
+import Asphalt from '../../../commonComponents/Tiles/Asphalt';
 
 export default class Tile extends Component {
   render() {
@@ -31,6 +32,8 @@ export default class Tile extends Component {
             return <RoadUpDown key={index} tileData={tile} />;
           case 'roof':
             return <Roof key={index} tileData={tile} />;
+          case 'asphalt':
+            return <Asphalt key={index} tileData={tile} />;
           default:
             return <Grass key={index} tileData={tile} />;
         }

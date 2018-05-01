@@ -8,6 +8,10 @@ import Brunette from '../../../commonComponents/Characters/Brunette';
 import Drone1 from '../../../commonComponents/Characters/Drone1';
 import Drone2 from '../../../commonComponents/Characters/Drone2';
 import Drone3 from '../../../commonComponents/Characters/Drone3';
+import BlackCar from '../../../commonComponents/Characters/CarBlack';
+import BlueCar from '../../../commonComponents/Characters/CarBlue';
+import OrangeCar from '../../../commonComponents/Characters/CarOrange';
+import WhiteCar from '../../../commonComponents/Characters/CarWhite';
 import Store from './store/passengerPickup';
 import Util from '../../../commonFuncs/index';
 import { observer } from 'mobx-react';
@@ -52,15 +56,55 @@ class Character extends Component {
     var player = document.getElementById('pl' + this.props.charId + '-' + this.props.gameId).childNodes[0];
     var parentEl = document.getElementById('pl' + this.props.charId + '-' + this.props.gameId).parentElement;
     var direction = Store.direction[this.props.gameId][this.props.charId];
-    if (Util.rect2parent(player, parentEl, direction) && Store.mode == 'play')
+    if (Util.rect2parent(player, parentEl, direction) && Store.mode == 'play' && this.isInsideRoad(direction))
       Store.moveCharacter(this.props.gameId, this.props.charId);
     this.getCollectives();
-    this.loadOffPassengers();
+    
     if (Store.mode == 'restart') {
       Store.restartCharacter(this.props.gameId, this.props.charId);
     }
   }
+  isInsideRoad(direction){
+    switch(direction){
+      case "up":
+        var rowId = Math.floor( Store.position[this.props.gameId][this.props.charId].y/30 );
+        var colId = Math.floor( (Store.position[this.props.gameId][this.props.charId].x+10)/30 );
+        //console.log(rowId,colId);
+        break;
+      case "down":
+        var rowId = Math.floor( (Store.position[this.props.gameId][this.props.charId].y+20)/30 );
+        var colId = Math.floor( (Store.position[this.props.gameId][this.props.charId].x+10)/30 );
+        break;
+      case "left":
+        var rowId = Math.floor( (Store.position[this.props.gameId][this.props.charId].y+10)/30 );
+        var colId = Math.floor( Store.position[this.props.gameId][this.props.charId].x/30 );
+        break;
+      case "right":
+        var rowId = Math.floor( (Store.position[this.props.gameId][this.props.charId].y+10)/30 );
+        var colId = Math.floor( (Store.position[this.props.gameId][this.props.charId].x+20)/30 );
+        break;
+      default:
+        break;
+    }
+    if(Store.obstacleMap[this.props.gameId][rowId]&&Store.obstacleMap[this.props.gameId][rowId][colId])
+      return true;
+    return false;
 
+
+    /*var rowId = Math.floor( Store.position[this.props.gameId][this.props.charId].y/30 );
+    var colId = Math.floor( Store.position[this.props.gameId][this.props.charId].x/30 );
+    if(Store.obstacleMap[this.props.gameId][rowId]&&Store.obstacleMap[this.props.gameId][rowId][colId])
+      return true;
+    return false;*/
+    //if(this.props.gameId == 0&&this.props.charId == 0)
+      //console.log(rowId,colId);
+    //if(!Store.obstacleMap[this.props.gameId][rowId][colId].tile)
+      //Store.obstacleMap[this.props.gameId][rowId][colId].findHtmlElement();
+    
+    //if(this.props.gameId == 0&&this.props.charId == 0)
+      //console.log(Store.obstacleMap[this.props.gameId][rowId][colId]);
+    
+  }
   getCollectives() {
     var player = document.getElementById('pl' + this.props.charId + '-' + this.props.gameId);
     var parentEl = player.parentElement;
@@ -133,6 +177,34 @@ class Character extends Component {
       case 'drone3':
         return <div id={'pl' + this.props.charId + '-' + this.props.gameId}>
           <Drone3
+            position={Store.position[this.props.gameId][this.props.charId]}
+            direction={Store.direction[this.props.gameId][this.props.charId]}
+          />
+        </div>;
+      case 'black-car':
+        return <div id={'pl' + this.props.charId + '-' + this.props.gameId}>
+          <BlackCar
+            position={Store.position[this.props.gameId][this.props.charId]}
+            direction={Store.direction[this.props.gameId][this.props.charId]}
+          />
+        </div>;
+      case 'blue-car':
+       return <div id={'pl' + this.props.charId + '-' + this.props.gameId}>
+         <BlueCar
+           position={Store.position[this.props.gameId][this.props.charId]}
+           direction={Store.direction[this.props.gameId][this.props.charId]}
+         />
+       </div>;
+      case 'orange-car':
+        return <div id={'pl' + this.props.charId + '-' + this.props.gameId}>
+          <OrangeCar
+            position={Store.position[this.props.gameId][this.props.charId]}
+            direction={Store.direction[this.props.gameId][this.props.charId]}
+          />
+        </div>;
+      case 'white-car':
+        return <div id={'pl' + this.props.charId + '-' + this.props.gameId}>
+          <WhiteCar
             position={Store.position[this.props.gameId][this.props.charId]}
             direction={Store.direction[this.props.gameId][this.props.charId]}
           />
