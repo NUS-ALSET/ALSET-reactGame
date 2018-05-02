@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Store from './store/squad';
-import { withStyles } from 'material-ui/styles';
-import Button from 'material-ui/Button';
 import brace from 'brace';
 import AceEditor from 'react-ace';
 import 'brace/mode/javascript';
@@ -36,18 +34,6 @@ if(closestGem){
     return direction;
 }`;
 
-const styles = theme => ({
-  root: {
-    flexGrow: 1,
-    padding: '0px 10px',
-  },
-  control: {
-    padding: theme.spacing.unit * 2,
-  },
-  button: {
-    margin: theme.spacing.unit,
-  },
-});
 class CodeEditor extends Component {
   constructor(props) {
     super(props);
@@ -84,9 +70,8 @@ class CodeEditor extends Component {
   }
 
   render() {
-    const { classes } = this.props;
     const { updatedCode } = this.state;
-    return <div className={classes.root}>
+    return <div >
       <h4>{'function getPlayersCommands(world, playerNum){'}</h4>
       <AceEditor
         mode="javascript"
@@ -109,10 +94,10 @@ class CodeEditor extends Component {
         }}
       />
       <h4>{'}'}</h4>
-      <Button variant="raised" color="primary" onClick={this.updateCustomCode} className={classes.button}>
+      <button onClick={this.updateCustomCode} >
         Update code
-       </Button>
+       </button>
     </div>;
   }
 }
-export default withStyles(styles)(CodeEditor);
+export default CodeEditor;

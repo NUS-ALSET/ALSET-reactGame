@@ -18,12 +18,6 @@ var _singlePlayerTwoWindows = require('./store/singlePlayerTwoWindows');
 
 var _singlePlayerTwoWindows2 = _interopRequireDefault(_singlePlayerTwoWindows);
 
-var _styles = require('material-ui/styles');
-
-var _Button = require('material-ui/Button');
-
-var _Button2 = _interopRequireDefault(_Button);
-
 var _brace = require('brace');
 
 var _brace2 = _interopRequireDefault(_brace);
@@ -45,21 +39,6 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 var CustomFunctionCode = 'var player = world.player;\nvar closestGem = false;\nworld.collectives.forEach(stone => {\n    if(closestGem==false)\n        closestGem = stone;\n    else if(\n        Math.sqrt(Math.pow((player.x-closestGem.x),2)+Math.pow((player.y-closestGem.y),2))>\n        Math.sqrt(Math.pow((player.x-stone.x),2)+Math.pow((player.y-stone.y),2))\n    ){\n        closestGem = stone;\n    }\n});\nif(closestGem){\n    if(closestGem.x-player.x>64){\n        var direction = {left:false, right:true, up:false, down:false};\n    }   \n    else if(closestGem.x-player.x<0){\n        var direction = {left:true, right:false, up:false, down:false};\n    }\n    else if(closestGem.y-player.y>64){\n        var direction = {left:false, right:false, up:false, down:true};\n    }\n    else if(closestGem.y-player.y<0){\n        var direction = {left:false, right:false, up:true, down:false};\n    }\n    return direction;\n}';
-
-var styles = function styles(theme) {
-  return {
-    root: {
-      flexGrow: 1,
-      padding: '0px 10px'
-    },
-    control: {
-      padding: theme.spacing.unit * 2
-    },
-    button: {
-      margin: theme.spacing.unit
-    }
-  };
-};
 
 var CodeEditor = function (_Component) {
   _inherits(CodeEditor, _Component);
@@ -114,12 +93,11 @@ var CodeEditor = function (_Component) {
   }, {
     key: 'render',
     value: function render() {
-      var classes = this.props.classes;
       var updatedCode = this.state.updatedCode;
 
       return _react2.default.createElement(
         'div',
-        { className: classes.root },
+        null,
         _react2.default.createElement(
           'h4',
           null,
@@ -151,8 +129,8 @@ var CodeEditor = function (_Component) {
           '}'
         ),
         _react2.default.createElement(
-          _Button2.default,
-          { variant: 'raised', color: 'primary', onClick: this.updateCustomCode, className: classes.button },
+          'button',
+          { onClick: this.updateCustomCode },
           'Update code'
         )
       );
@@ -162,4 +140,4 @@ var CodeEditor = function (_Component) {
   return CodeEditor;
 }(_react.Component);
 
-exports.default = (0, _styles.withStyles)(styles)(CodeEditor);
+exports.default = CodeEditor;

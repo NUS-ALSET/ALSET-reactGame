@@ -14,12 +14,6 @@ var _propTypes = require('prop-types');
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
-var _styles = require('material-ui/styles');
-
-var _Button = require('material-ui/Button');
-
-var _Button2 = _interopRequireDefault(_Button);
-
 var _code = require('./code/');
 
 var _code2 = _interopRequireDefault(_code);
@@ -93,26 +87,6 @@ var selectStore = function selectStore(mode) {
         return _gameStore4.default;
       }
   }
-};
-
-var styles = function styles(theme) {
-  return {
-    root: {
-      flexGrow: 1,
-      padding: '0px 10px'
-    },
-    paper: {
-      textAlign: 'center',
-      padding: '40px 20px',
-      cursor: 'pointer'
-    },
-    control: {
-      padding: theme.spacing.unit * 2
-    },
-    button: {
-      margin: theme.spacing.unit
-    }
-  };
 };
 
 var PlayGemCollectorGame = function (_Component) {
@@ -216,7 +190,6 @@ var PlayGemCollectorGame = function (_Component) {
     };
 
     _this.initFunctionEditor = function () {
-      var classes = _this.props.classes;
       var updatedCode = _this.state.updatedCode;
 
       return _react2.default.createElement(
@@ -253,8 +226,8 @@ var PlayGemCollectorGame = function (_Component) {
           '}'
         ),
         _react2.default.createElement(
-          _Button2.default,
-          { variant: 'raised', color: 'primary', onClick: _this.updateCustomCode, className: classes.button },
+          'button',
+          { onClick: _this.updateCustomCode },
           'Update code'
         )
       );
@@ -403,7 +376,6 @@ var PlayGemCollectorGame = function (_Component) {
 }(_react.Component);
 
 PlayGemCollectorGame.propTypes = {
-  classes: _propTypes2.default.object.isRequired,
   onGameEvent: _propTypes2.default.func,
   showCodeEditor: _propTypes2.default.bool,
   mode: _propTypes2.default.string
@@ -416,4 +388,4 @@ PlayGemCollectorGame.defaultProps = {
   showCodeEditor: _config2.default.showCodeEditor
 };
 
-exports.default = (0, _styles.withStyles)(styles)(PlayGemCollectorGame);
+exports.default = PlayGemCollectorGame;

@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'material-ui/styles';
-import Button from 'material-ui/Button';
 import GemCollectorGame from './code/';
 import CustomFunctionCode from '../../customCode';
 import brace from 'brace';
@@ -34,24 +32,6 @@ const selectStore = mode => {
     }
   }
 };
-
-const styles = theme => ({
-  root: {
-    flexGrow: 1,
-    padding: '0px 10px',
-  },
-  paper: {
-    textAlign: 'center',
-    padding: '40px 20px',
-    cursor: 'pointer',
-  },
-  control: {
-    padding: theme.spacing.unit * 2,
-  },
-  button: {
-    margin: theme.spacing.unit,
-  },
-});
 
 class PlayGemCollectorGame extends Component {
   constructor(props) {
@@ -250,7 +230,6 @@ class PlayGemCollectorGame extends Component {
     }
   };
   initFunctionEditor = () => {
-    const { classes } = this.props;
     const { updatedCode } = this.state;
     return (
       <div>
@@ -276,16 +255,15 @@ class PlayGemCollectorGame extends Component {
           }}
         />
         <h4>{'}'}</h4>
-        <Button variant="raised" color="primary" onClick={this.updateCustomCode} className={classes.button}>
+        <button onClick={this.updateCustomCode}>
           Update code
-        </Button>
+        </button>
       </div>
     );
   };
 }
 
 PlayGemCollectorGame.propTypes = {
-  classes: PropTypes.object.isRequired,
   onGameEvent: PropTypes.func,
   showCodeEditor: PropTypes.bool,
   mode: PropTypes.string,
@@ -298,4 +276,4 @@ PlayGemCollectorGame.defaultProps = {
   showCodeEditor: config.showCodeEditor,
 };
 
-export default withStyles(styles)(PlayGemCollectorGame);
+export default PlayGemCollectorGame;
