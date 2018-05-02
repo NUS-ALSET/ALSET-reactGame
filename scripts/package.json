@@ -1,0 +1,9 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "main": "simulate_game.js",
+  "license": "MIT",
+  "dependencies": {
+    "node-cmd": "^3.0.0"
+  }
+}

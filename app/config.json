@@ -1,0 +1,6 @@
+{
+	"mode": "bot-vs-bot",
+	"game": "passengerPickup",
+	"player1Function": "function (world, playerNum) {\n  return { left: false, right: true, up: false, down: false };\n}",
+	"player2Function": "function (world, playerNum) {\n  return { left: false, right: false, up: false, down: true };\n}"
+}
