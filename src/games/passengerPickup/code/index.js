@@ -5,7 +5,7 @@ import Character from './character';
 import Bot from './bot';
 import Collectives from './collectives';
 import Obstacle from './obstacle';
-import Halt from './halt';
+import Destination from './destination';
 import Controls from './controls';
 import CodeEditor from './code-editor';
 import Store from './store/passengerPickup';
@@ -64,6 +64,7 @@ export default class PassengerPickup extends Component {
             max={this.props.gameData.config.game1.collectives.max}
             gameId={0}
           />
+          <Destination gameId = {0}/>
           {(this.props.gameData.player == 'player1' && this.props.gameData.mode == 'player-vs-bot'
             || this.props.gameData.mode == 'player-vs-player') &&
             <Character
@@ -115,6 +116,7 @@ export default class PassengerPickup extends Component {
             max={this.props.gameData.config.game2.collectives.max}
             gameId={1}
           />
+          <Destination gameId = {1}/>
           {(this.props.gameData.player == 'player2' && this.props.gameData.mode == 'player-vs-bot'
             || this.props.gameData.mode == 'player-vs-player') &&
             <Character

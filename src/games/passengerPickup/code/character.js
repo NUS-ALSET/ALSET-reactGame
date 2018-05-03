@@ -69,7 +69,6 @@ class Character extends Component {
       case "up":
         var rowId = Math.floor( Store.position[this.props.gameId][this.props.charId].y/30 );
         var colId = Math.floor( (Store.position[this.props.gameId][this.props.charId].x+10)/30 );
-        //console.log(rowId,colId);
         break;
       case "down":
         var rowId = Math.floor( (Store.position[this.props.gameId][this.props.charId].y+20)/30 );
@@ -89,39 +88,29 @@ class Character extends Component {
     if(Store.obstacleMap[this.props.gameId][rowId]&&Store.obstacleMap[this.props.gameId][rowId][colId])
       return true;
     return false;
-
-
-    /*var rowId = Math.floor( Store.position[this.props.gameId][this.props.charId].y/30 );
-    var colId = Math.floor( Store.position[this.props.gameId][this.props.charId].x/30 );
-    if(Store.obstacleMap[this.props.gameId][rowId]&&Store.obstacleMap[this.props.gameId][rowId][colId])
-      return true;
-    return false;*/
-    //if(this.props.gameId == 0&&this.props.charId == 0)
-      //console.log(rowId,colId);
-    //if(!Store.obstacleMap[this.props.gameId][rowId][colId].tile)
-      //Store.obstacleMap[this.props.gameId][rowId][colId].findHtmlElement();
-    
-    //if(this.props.gameId == 0&&this.props.charId == 0)
-      //console.log(Store.obstacleMap[this.props.gameId][rowId][colId]);
-    
   }
   getCollectives() {
-    var player = document.getElementById('pl' + this.props.charId + '-' + this.props.gameId);
-    var parentEl = player.parentElement;
-    player = player.childNodes[0];
-    var collectives = parentEl.getElementsByClassName('collective');
-    Array.from(collectives).forEach(collective => {
-      if (Util.rect2Rect(collective, player)) {
-        var collectiveId = collective.getAttribute('data-key');
-        Store.removeCollective(this.props.gameId, this.props.charId, collectiveId);
+    if(Store.destinationPoint[this.props.gameId][this.props.charId]==null){
+      var player = document.getElementById('pl' + this.props.charId + '-' + this.props.gameId);
+      var parentEl = player.parentElement;
+      player = player.childNodes[0];
+      var collectives = parentEl.getElementsByClassName('collective');
+      Array.from(collectives).forEach(collective => {
+        if (Util.rect2Rect(collective, player)) {
+          var collectiveId = collective.getAttribute('data-key');
+          Store.removeCollective(this.props.gameId, this.props.charId, collectiveId);
+        }
+      });
+    }
+    else{
+      var player = document.getElementById('pl' + this.props.charId + '-' + this.props.gameId);
+      player = player.childNodes[0];
+      var destination = document.getElementById('destination' + this.props.gameId + '_' + this.props.charId);
+      
+      if (Util.rect2Rect(destination, player)) {
+        console.log('destination' + this.props.gameId + '_' + this.props.charId);
+        Store.loadOutPassengers(this.props.gameId, this.props.charId);
       }
-    });
-  }
-  loadOffPassengers(){
-    var player = document.getElementById('pl' + this.props.charId + '-' + this.props.gameId).childNodes[0];
-    var halt = document.getElementById('game'+this.props.gameId).getElementsByClassName('halt')[0];
-    if(Util.rect2Rect(halt, player)){
-      Store.loadOutPassengers(this.props.gameId, this.props.charId);
     }
   }
   componentDidMount() {
