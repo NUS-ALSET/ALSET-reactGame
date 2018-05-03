@@ -22,6 +22,8 @@ class Bot extends Component {
     super(props);
     this.loop = this.loop.bind(this);
     this.getCollectives = this.getCollectives.bind(this);
+    this.findShortestPath = this.findShortestPath.bind(this);
+    this.path = [];
   }
   loop = () => {
     if (!document.getElementById('bt' + this.props.charId + '-' + this.props.gameId))
@@ -34,12 +36,13 @@ class Bot extends Component {
         Store.moveCharacter(this.props.gameId, this.props.charId);
       var world = {
         player: Store.position[this.props.gameId][this.props.charId],
-        freePlaces: Store.freePlaces[this.props.gameId][this.props.charId],
+        path: this.path,
+        passenger: Store.destinationPoint[this.props.gameId][this.props.charId],
         collectives: Store.collectives[this.props.gameId]
       };
       if (this.props.showCodeEditor) {
         try {
-          var setDirection = eval('(function(world){' + Store.func + '}(world))');
+          var setDirection = eval('(function(world, this.findShortestPath){' + Store.func + '}(world))');
         }
         catch (err) {
           var setDirection = { down: true };
@@ -48,11 +51,11 @@ class Bot extends Component {
         }
       }
       else if (this.props.player1Function)
-        var setDirection = this.props.player1Function(world);
+        var setDirection = this.props.player1Function(world, this.findShortestPath);
       else if (this.props.player2Function)
-        var setDirection = this.props.player2Function(world);
+        var setDirection = this.props.player2Function(world, this.findShortestPath);
       else
-        var setDirection = this.props.getCommands(world);
+        var setDirection = this.props.getCommands(world, this.findShortestPath);
       if (setDirection) {
         if (setDirection.left)
           Store.changeDirection(this.props.gameId, this.props.charId, 'left');
@@ -63,30 +66,47 @@ class Bot extends Component {
         else if (setDirection.down)
           Store.changeDirection(this.props.gameId, this.props.charId, 'down');
       }
+      if(this.path[0]){
+        if(
+          Math.abs(this.path[this.path.length-1].x-Store.position[this.props.gameId][this.props.charId].x)<5&&
+          Math.abs(this.path[this.path.length-1].y-Store.position[this.props.gameId][this.props.charId].y)<5
+        ){
+          this.path.pop();
+        }
+      }
     }
     this.getCollectives();
-    this.loadOffPassengers();
     if (Store.mode == 'restart') {
       Store.restartCharacter(this.props.gameId, this.props.charId);
     }
   }
-  getCollectives() {
-    var player = document.getElementById('bt' + this.props.charId + '-' + this.props.gameId);
-    var parentEl = player.parentElement;
-    player = player.childNodes[0];
-    var collectives = parentEl.getElementsByClassName('collective');
-    Array.from(collectives).forEach(collective => {
-      if (Util.rect2Rect(collective, player)) {
-        var collectiveId = collective.getAttribute('data-key');
-        Store.removeCollective(this.props.gameId, this.props.charId, collectiveId);
-      }
-    });
+  findShortestPath(pointB) {
+    var newPointB = {x: pointB.takeofX, y: pointB.takeofY};
+    this.path = Util.findShortestPath(Store.obstacleMap[this.props.gameId], Store.position[this.props.gameId][this.props.charId], newPointB);
+    return this.path;
   }
-  loadOffPassengers(){
-    var player = document.getElementById('bt' + this.props.charId + '-' + this.props.gameId).childNodes[0];
-    var halt = document.getElementById('game'+this.props.gameId).getElementsByClassName('halt')[0];
-    if(Util.rect2Rect(halt, player)){
-      Store.loadOutPassengers(this.props.gameId, this.props.charId);
+  getCollectives() {
+    if(Store.destinationPoint[this.props.gameId][this.props.charId]==null){
+      var player = document.getElementById('bt' + this.props.charId + '-' + this.props.gameId);
+      var parentEl = player.parentElement;
+      player = player.childNodes[0];
+      var collectives = parentEl.getElementsByClassName('collective');
+      Array.from(collectives).forEach(collective => {
+        if (Util.rect2Rect(collective, player)) {
+          var collectiveId = collective.getAttribute('data-key');
+          Store.removeCollective(this.props.gameId, this.props.charId, collectiveId);
+        }
+      });
+    }
+    else{
+      var player = document.getElementById('bt' + this.props.charId + '-' + this.props.gameId);
+      player = player.childNodes[0];
+      var destination = document.getElementById('destination' + this.props.gameId + '_' + this.props.charId);
+      
+      if (Util.rect2Rect(destination, player)) {
+        console.log('destination' + this.props.gameId + '_' + this.props.charId);
+        Store.loadOutPassengers(this.props.gameId, this.props.charId);
+      }
     }
   }
   componentDidMount() {

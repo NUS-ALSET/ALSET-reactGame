@@ -129,7 +129,7 @@ class passengerStore {
   }
 }
 class Cell{
-  constructor(x,y,gameId) {
+  constructor(y,x,gameId) {
     this.x=x;
     this.y=y;
     this.gameId=gameId;
@@ -150,7 +150,8 @@ class Cell{
     var y = this.y;
     var rows = grid.length;
     var cols = grid[0].length;
-		if(x<cols-1&&grid[x+1]&&grid[x+1][y]){
+    
+		/*if(x<cols-1&&grid[x+1]&&grid[x+1][y]){
       this.neighbors.push(grid[x+1][y]);
     }
 		if(x>0&&grid[x-1]&&grid[x-1][y]){
@@ -161,7 +162,7 @@ class Cell{
     }
 		if(y>0&&grid[x]&&grid[x][y-1]){
       this.neighbors.push(grid[x][y-1]);
-    }
+    }*/
   }
 }
 class Passenger{
