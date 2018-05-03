@@ -13,6 +13,7 @@ const RIGHT = 'right';
 const UP = 'up';
 const DOWN = 'down';
 const EMPTY = ' ';
+const SPEED = 10; // blocks per second
 
 module.exports = {
   ROWS,
@@ -30,4 +31,5 @@ module.exports = {
   UP,
   DOWN,
   EMPTY,
+  SPEED,
 };
