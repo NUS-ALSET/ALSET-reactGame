@@ -1,0 +1,6 @@
+{
+  "maxGems": 20,
+  "minGems": 10,
+  "scoreToWin": 10,
+  "showGame": false
+}
