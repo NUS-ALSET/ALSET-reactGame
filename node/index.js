@@ -23,10 +23,10 @@ let { MIN_GEMS, MAX_GEMS, SCORE_TO_WIN, SHOW_GAME } = require('./constants');
 const getAsync = Promise.promisify(cmd.get, { multiArgs: false, context: cmd });
 
 const validArgs = ['game', 'config', 'player1', 'player2'];
-let _gemsIntoWorld = 0;
 let _player1Pos = { row: 0, col: 0 };
 let _player2Pos = { row: ROWS - 1, col: COLS - 1 };
 let _world = null;
+let _gems = [];
 let _scores = [0, 0];
 
 // default players function
@@ -54,23 +54,26 @@ const playerExist = pos => {
 const gemExist = ({ row, col }) => {
   return _world[row][col] === GEM;
 };
-const updateScore = playerIndex => {
+const updateScore = (playerIndex, pos) => {
   _scores[playerIndex]++;
-  _gemsIntoWorld--;
+  _gems = _gems.filter(gem => gem.row !== pos.row && gem.col !== pos.col);
 };
 
 const generateGems = () => {
-  if (_gemsIntoWorld < MIN_GEMS) {
-    let gemsToGenerate = MAX_GEMS - _gemsIntoWorld;
+  if (_gems.length < MIN_GEMS) {
+    let gemsToGenerate = MAX_GEMS - _gems.length;
     while (gemsToGenerate) {
       const posR = getRandomValue(ROWS);
       const posC = getRandomValue(COLS);
       if (_world[posR][posC] === EMPTY) {
         _world[posR][posC] = GEM;
+        _gems.push({
+          row: posR,
+          col: posC,
+        });
         gemsToGenerate--;
       }
     }
-    _gemsIntoWorld = MAX_GEMS;
   }
 };
 
@@ -80,28 +83,28 @@ const getNextPosition = (playerPos, dir, playerIndex) => {
     case LEFT: {
       const pos = { row, col: col - 1 };
       if (positionExist(pos) && gemExist(pos)) {
-        updateScore(playerIndex);
+        updateScore(playerIndex, pos);
       }
       return positionExist(pos) && !playerExist(pos) ? pos : playerPos;
     }
     case RIGHT: {
       const pos = { row, col: col + 1 };
       if (positionExist(pos) && !playerExist(pos) && gemExist(pos)) {
-        updateScore(playerIndex);
+        updateScore(playerIndex, pos);
       }
       return positionExist(pos) && !playerExist(pos) ? pos : playerPos;
     }
     case UP: {
       const pos = { row: row - 1, col };
       if (positionExist(pos) && !playerExist(pos) && gemExist(pos)) {
-        updateScore(playerIndex);
+        updateScore(playerIndex, pos);
       }
       return positionExist(pos) && !playerExist(pos) ? pos : playerPos;
     }
     case DOWN: {
       const pos = { row: row + 1, col };
       if (positionExist(pos) && !playerExist(pos) && gemExist(pos)) {
-        updateScore(playerIndex);
+        updateScore(playerIndex, pos);
       }
       return positionExist(pos) && !playerExist(pos) ? pos : playerPos;
     }
@@ -165,8 +168,8 @@ const startGame = () => {
       clearConsole();
       if (SHOW_GAME) print();
       generateGems();
-      const player1Direction = getPlayer1Direction(_world, _player1Pos);
-      const player2Direction = getPlayer2Direction(_world, _player2Pos);
+      const player1Direction = getPlayer1Direction(_world, _player1Pos, _gems);
+      const player2Direction = getPlayer2Direction(_world, _player2Pos, _gems);
       const player1NewPos = getNextPosition(_player1Pos, player1Direction, PLAYER_1_INDEX);
       const player2NewPos = getNextPosition(_player2Pos, player2Direction, PLAYER_2_INDEX);
       movePlayer(player1NewPos, PLAYER_1, _player1Pos);
@@ -230,7 +233,7 @@ const init = async () => {
     if (arg.includes('=')) {
       const data = arg.split('=');
       if (data.length === 2 && validArgs.includes(data[0])) {
-        config[data[0]] = data[1].replace('"', '').replace("'", '');
+        config[data[0]] = data[1].replace('"', '').replace('\'', '');
       }
     }
   });

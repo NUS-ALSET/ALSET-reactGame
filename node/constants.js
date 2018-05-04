@@ -1,7 +1,7 @@
 const ROWS = 10;
 const COLS = 20;
-const MIN_GEMS = 2;
-const MAX_GEMS = 4;
+const MIN_GEMS = 5;
+const MAX_GEMS = 10;
 const SCORE_TO_WIN = 10;
 const SPEED = 5000; // blocks per second
 const PLAYER_1 = '👨';
