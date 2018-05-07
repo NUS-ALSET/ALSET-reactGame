@@ -1,12 +1,7 @@
-const LEFT = 'left';
-const RIGHT = 'right';
-const UP = 'up';
-const DOWN = 'down';
+const { ROWS, COLS, GEM, LEFT, RIGHT, UP, DOWN, EMPTY } = require('./constants');
 
-const getDirection = (world, playerPos) => {
-  const dirs = [LEFT, RIGHT, UP, DOWN];
+module.exports = (world, playerPos, gems) => {
+  const dirs = [UP, DOWN, LEFT, RIGHT];
   const index = Math.floor(Math.random() * 4);
   return dirs[index];
 };
-
-module.exports = getDirection;
