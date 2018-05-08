@@ -31,8 +31,8 @@ class BlackCar extends Component {
       position: 'absolute',
       transform: `translate(${targetX}px, ${targetY}px)`,
       transformOrigin: 'left top',
-      width:"20px",
-      height:"20px"
+      width:'20px',
+      height:'20px'
     };
   }
   render() {

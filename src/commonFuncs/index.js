@@ -73,9 +73,15 @@ class Utils {
     }
   }
   getPassengerCommands(world, findPathCallback) {
+    //continue calculating path if flag calculating is set to true
+    if(world.calculatingPath){
+      findPathCallback();
+      return;
+    }
     var player = world.player;
     var closestPassenger = false;
     if(world.path.length == 0&&!world.passenger){
+      //find closest passenger if path is empty
       world.collectives.forEach(passenger => {
         if (closestPassenger == false)
           closestPassenger = passenger;
@@ -92,84 +98,82 @@ class Utils {
         }
       });
       if(closestPassenger){
-        console.log(world.path);
-        world.path = findPathCallback(closestPassenger);
-        console.log(world.path);
+        //finding path to the closest passenger
+        findPathCallback(closestPassenger, 'passengerLocation');
       }
     }
     else if(world.path.length == 0&&world.passenger){
-      world.path = findPathCallback(world.passenger);
+      //finding path to passenger takeof destination if passenger is picked up
+      findPathCallback(world.passenger, 'takeofLocation');
     }
-    if(world.path.length>0){
+    else if(world.path.length>0){
+      //going to the next cell of current path (once bot reaches this point it will be deleted automaticly)
       var point = world.path[world.path.length-1];
-      if (point.x - player.x > 15) {
+      if (point.x*30 - player.x > 0) {
         var direction = { left: false, right: true, up: false, down: false };
-      } else if (point.x - player.x < 0) {
+      } else if (point.x*30 - player.x < 0) {
         var direction = { left: true, right: false, up: false, down: false };
-      } else if (point.y - player.y > 15) {
+      } else if (point.y*30 - player.y > 0) {
         var direction = { left: false, right: false, up: false, down: true };
-      } else if (point.y - player.y < 0) {
+      } else if (point.y*30 - player.y < 0) {
         var direction = { left: false, right: false, up: true, down: false };
       }
       return direction;
     }
   }
-  findShortestPath(arr, pointA, pointB){
+  findShortestPath(arr, refObjs, charId){
     var heuristic = function (a,b){
       var x = a.x - b.x;
       var y = a.y - b.y;
       var d = Math.sqrt( x*x + y*y );
       return d;
-    }
-    var removeFromArray = function(arr,elt){
-      for(var i = arr.length-1; i>=0; i--){
-        if(arr[i] == elt){
-          arr.splice(i,1);
+    };
+    var removeFromArray = function(array,elt){
+      for(var i = array.length-1; i>=0; i--){
+        if(array[i] == elt){
+          array.splice(i,1);
         }
       }
+    };
+    if(!refObjs.cellPointA){
+      refObjs.cellPointA = arr[Math.floor( (refObjs.pointA.y)/30 )][Math.floor( (refObjs.pointA.x)/30 )];
+      refObjs.cellPointB = arr[Math.floor( (refObjs.pointB.y)/30 )][Math.floor( (refObjs.pointB.x)/30 )];
+      refObjs.openSet = [];
+      refObjs.closeSet = [];
+      refObjs.path = [];
+      refObjs.current = refObjs.pointA;
+      refObjs.openSet.push(refObjs.cellPointA);
     }
-    var cellPointA = arr[Math.floor( (pointA.y)/30 )][Math.floor( (pointA.x)/30 )];
-    var cellPointB = arr[Math.floor( (pointB.y)/30 )][Math.floor( (pointB.x)/30 )];
-
-    //console.log(pointA, cellPointA);
-    //console.log(pointB, cellPointB);
-    var openSet = [];
-    var closeSet = [];
-    var path = [];
-    var current = pointA;
-    openSet.push(cellPointA);
     //searching path function started here
-    console.log(arr);
-    while(openSet.length>0){
+    if(refObjs.openSet.length>0){
+      console.log('finding path iteration');
       var winner = 0;
-      for(var i=0; i < openSet.length; i++){
-        if(openSet[i].f < openSet[winner].f){
+      for(var i=0; i < refObjs.openSet.length; i++){
+        if(refObjs.openSet[i].f < refObjs.openSet[winner].f){
           winner = i;
         }
       }
-      var current = openSet[winner];
-      console.log(current);
-      
-      if(current === cellPointB){
+      var current = refObjs.openSet[winner];
+      if(current === refObjs.cellPointB){
         var temp = current;
-        path.push(temp);
-        while(temp.previous){
-          path.push(temp.previous);
-          temp = temp.previous;
+        refObjs.path.push(temp);
+        while(temp.previous[charId]){
+          refObjs.path.push(temp.previous[charId]);
+          temp = temp.previous[charId];
         }
-        console.log("DONE!");
-        return path;
+        console.log('DONE finding path!', refObjs.path.length);
+        return refObjs.path;
       }
-      removeFromArray(openSet,current);
-      closeSet.push(current);
+      removeFromArray(refObjs.openSet,current);
+      refObjs.closeSet.push(current);
       var neighbors = current.neighbors;
       for(var i=0; i < neighbors.length; i++){
         var neighbor = neighbors[i];
         
-        if(!closeSet.includes(neighbor) && !neighbor.wall){
+        if(!refObjs.closeSet.includes(neighbor) && !neighbor.wall){
           var tempG = current.g+1;
           var newPath = false;
-          if(openSet.includes(neighbor)){
+          if(refObjs.openSet.includes(neighbor)){
             if(tempG<neighbor.g){
               neighbor.g = tempG;
               newPath = true;
@@ -178,14 +182,13 @@ class Utils {
           else{
             neighbor.g = tempG;
             newPath = true;
-            openSet.push(neighbor);
+            refObjs.openSet.push(neighbor);
           }
           if(newPath){
-            neighbor.h = heuristic(neighbor, cellPointB);
+            neighbor.h = heuristic(neighbor, refObjs.cellPointB);
             neighbor.f = neighbor.g + neighbor.h;
-            neighbor.previous = current;
+            neighbor.previous[charId] = current;
           }
-          
         }
       }
     }

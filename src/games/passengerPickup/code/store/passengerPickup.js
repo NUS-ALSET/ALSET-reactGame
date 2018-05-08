@@ -50,6 +50,17 @@ class passengerStore {
       }
     }
   }
+  clearNeighbors(gameId,charId){
+    var arr = this.obstacleMap[gameId];
+    var rowQuantity = window.innerHeight*0.8/30<arr.length?window.innerHeight*0.8/30:arr.length;
+    var colQuantity = window.innerWidth/2/30<arr[0].length?window.innerWidth/2/30:arr[0].length;
+    for(var i=0;i<rowQuantity;i++){
+      for(var j=0;j<colQuantity;j++){
+        if(this.obstacleMap[gameId][i][j])
+          this.obstacleMap[gameId][i][j].previous[charId] = undefined;
+      }
+    }
+  }
   moveCharacter(gameId, characterId) {
     switch (this.direction[gameId][characterId]) {
       case 'up':
@@ -125,6 +136,7 @@ class passengerStore {
     }
   }
   updateCustomCode(newText) {
+    console.log('updating');
     this.func = newText;
   }
 }
@@ -137,32 +149,32 @@ class Cell{
     this.g=0;
     this.b=0;
     this.neighbors = [];
-    this.previous = undefined;
+    this.previous = [undefined,undefined];
     this.tile=null;
     this.size=30;
-    this.up = null;
-    this.down = null;
-    this.left = null;
-    this.right = null;
   }
   addNeighbors(grid){
 		var x = this.x;
     var y = this.y;
     var rows = grid.length;
     var cols = grid[0].length;
-    
-		/*if(x<cols-1&&grid[x+1]&&grid[x+1][y]){
-      this.neighbors.push(grid[x+1][y]);
-    }
-		if(x>0&&grid[x-1]&&grid[x-1][y]){
-      this.neighbors.push(grid[x-1][y]);
-    }
-		if(y<rows-1&&grid[x]&&grid[x][y+1]){
-      this.neighbors.push(grid[x][y+1]);
-    }
-		if(y>0&&grid[x]&&grid[x][y-1]){
-      this.neighbors.push(grid[x][y-1]);
+    /*if(x==1&&y==0){
+      console.log(grid[y][x+1]);
+      console.log(grid[y][x-1]);
     }*/
+    
+		if(grid[y+1]&&grid[y+1][x]){
+      this.neighbors.push(grid[y+1][x]);
+    }
+		if(grid[y-1]&&grid[y-1][x]){
+      this.neighbors.push(grid[y-1][x]);
+    }
+		if(grid[y]&&grid[y][x+1]){
+      this.neighbors.push(grid[y][x+1]);
+    }
+		if(grid[y]&&grid[y][x-1]){
+      this.neighbors.push(grid[y][x-1]);
+    }
   }
 }
 class Passenger{

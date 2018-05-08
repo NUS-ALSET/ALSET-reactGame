@@ -66,19 +66,19 @@ class Character extends Component {
   }
   isInsideRoad(direction){
     switch(direction){
-      case "up":
+      case 'up':
         var rowId = Math.floor( Store.position[this.props.gameId][this.props.charId].y/30 );
         var colId = Math.floor( (Store.position[this.props.gameId][this.props.charId].x+10)/30 );
         break;
-      case "down":
+      case 'down':
         var rowId = Math.floor( (Store.position[this.props.gameId][this.props.charId].y+20)/30 );
         var colId = Math.floor( (Store.position[this.props.gameId][this.props.charId].x+10)/30 );
         break;
-      case "left":
+      case 'left':
         var rowId = Math.floor( (Store.position[this.props.gameId][this.props.charId].y+10)/30 );
         var colId = Math.floor( Store.position[this.props.gameId][this.props.charId].x/30 );
         break;
-      case "right":
+      case 'right':
         var rowId = Math.floor( (Store.position[this.props.gameId][this.props.charId].y+10)/30 );
         var colId = Math.floor( (Store.position[this.props.gameId][this.props.charId].x+20)/30 );
         break;

@@ -30,7 +30,7 @@
       "type": "white-car",
       "speed": 1,
       "startingPoint": {
-        "x": 50,
+        "x": 250,
         "y": 0
       }
     },
@@ -126,7 +126,7 @@
       "type": "black-car",
       "speed": 1,
       "startingPoint": {
-        "x": 50,
+        "x": 250,
         "y": 0
       }
     },

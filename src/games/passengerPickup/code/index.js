@@ -102,7 +102,7 @@ export default class PassengerPickup extends Component {
               showCodeEditor={this.props.gameData.showCodeEditor}
               player1Function={this.props.player1Function}
               onError={this.props.onError}
-            />}
+        />}
         </Stage></div>
         <div id={'game1'} style={this.getGameWrapperStyles()}><Stage style={this.getGameStyles()}>
           <Tile tiles={this.props.gameData.config.game2.tiles} />
@@ -154,7 +154,7 @@ export default class PassengerPickup extends Component {
               showCodeEditor={this.props.gameData.showCodeEditor}
               player2Function={this.props.player2Function}
               onError={this.props.onError}
-            />}
+        />}
         </Stage></div>
       </Loop>
     </div>

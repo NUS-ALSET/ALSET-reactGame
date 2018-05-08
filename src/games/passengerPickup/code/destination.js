@@ -20,7 +20,7 @@ class Destination extends Component {
   render() {
     return (
       <div>
-        {Store.destinationPoint[this.props.gameId][0]!==null&&<div id={'destination'+this.props.gameId+"_0"} 
+        {Store.destinationPoint[this.props.gameId][0]!==null&&<div id={'destination'+this.props.gameId+'_0'} 
         style={this.getWrapperStyles(Store.destinationPoint[this.props.gameId][0])}>
           <Sprite
             repeat={true}
@@ -33,7 +33,7 @@ class Destination extends Component {
             steps={[7]}
           />
         </div>}
-        {Store.destinationPoint[this.props.gameId][1]!==null&&<div id={'destination'+this.props.gameId+"_1"} 
+        {Store.destinationPoint[this.props.gameId][1]!==null&&<div id={'destination'+this.props.gameId+'_1'} 
         style={this.getWrapperStyles(Store.destinationPoint[this.props.gameId][1])}>
           <Sprite
             repeat={true}
