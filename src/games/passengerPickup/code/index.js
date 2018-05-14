@@ -5,7 +5,7 @@ import Character from './character';
 import Bot from './bot';
 import Collectives from './collectives';
 import Obstacle from './obstacle';
-import Halt from './halt';
+import Destination from './destination';
 import Controls from './controls';
 import CodeEditor from './code-editor';
 import Store from './store/passengerPickup';
@@ -57,7 +57,6 @@ export default class PassengerPickup extends Component {
           <div>{this.props.gameData.config.game1.obstacles.map((obstacle, index) => {
             return <Obstacle key={index} obstacle={obstacle} index={index} />;
           })}</div>
-          <Halt/>
           <Collectives
             type={this.props.gameData.config.game1.collectives.type}
             size={this.props.gameData.config.game1.collectives.size}
@@ -65,6 +64,7 @@ export default class PassengerPickup extends Component {
             max={this.props.gameData.config.game1.collectives.max}
             gameId={0}
           />
+          <Destination gameId = {0}/>
           {(this.props.gameData.player == 'player1' && this.props.gameData.mode == 'player-vs-bot'
             || this.props.gameData.mode == 'player-vs-player') &&
             <Character
@@ -102,14 +102,13 @@ export default class PassengerPickup extends Component {
               showCodeEditor={this.props.gameData.showCodeEditor}
               player1Function={this.props.player1Function}
               onError={this.props.onError}
-            />}
+        />}
         </Stage></div>
         <div id={'game1'} style={this.getGameWrapperStyles()}><Stage style={this.getGameStyles()}>
           <Tile tiles={this.props.gameData.config.game2.tiles} />
           <div>{this.props.gameData.config.game2.obstacles.map((obstacle, index) => {
             return <Obstacle key={index} obstacle={obstacle} index={index} />;
           })}</div>
-          <Halt/>
           <Collectives
             type={this.props.gameData.config.game2.collectives.type}
             size={this.props.gameData.config.game2.collectives.size}
@@ -117,6 +116,7 @@ export default class PassengerPickup extends Component {
             max={this.props.gameData.config.game2.collectives.max}
             gameId={1}
           />
+          <Destination gameId = {1}/>
           {(this.props.gameData.player == 'player2' && this.props.gameData.mode == 'player-vs-bot'
             || this.props.gameData.mode == 'player-vs-player') &&
             <Character
@@ -154,7 +154,7 @@ export default class PassengerPickup extends Component {
               showCodeEditor={this.props.gameData.showCodeEditor}
               player2Function={this.props.player2Function}
               onError={this.props.onError}
-            />}
+        />}
         </Stage></div>
       </Loop>
     </div>
